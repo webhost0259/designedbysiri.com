@@ -38,16 +38,16 @@ const PRODUCTSEO: React.FC<PRODUCTSEOProps> =
         <meta name="description" content={description ? description : ApplicationDescription} />
         <meta name="keywords" content={keywords ? keywords : ApplicationKeywords}></meta>
         <meta name="robots" content='index, follow' />
-        <meta name="product:price" content={price?.toString()} /> // The price of the product.
-        <meta name="product:currency" content={currency} /> // The currency in which the price is specified.
-        <meta name="product:availability" content={availability ? availability : "in stock"} /> // The availability of the product.
-        <meta name="product:condition" content={condition ? condition : "New"} /> // The condition of the product.
-        <meta name="product:brand" content={brand ? brand : "Sireesha Reddy Designer Studio"} /> // The brand of the product.
-        <meta name="product:manufacturer" content={manufacturer ? manufacturer : "Sireesha Reddy Designer Studio"} /> // The manufacturer of the product.
-        <meta name="product:model" content={model ? model : "2024"} /> // The model of the product.
-        <meta name="product:sku" content={sku ? sku : "SRS2024"} /> // The Stock Keeping Unit (SKU) of the product.
-        <meta name="product:gtin8" content={gtin8 ? gtin8 : "12345678"} /> // The Global Trade Item Number (GTIN-8) of the product.
-        <meta name="product:gtin13" content={gtin13 ? gtin13 : "1234567890123"} /> // The Global Trade Item Number (GTIN-13) of the product.
+        <meta name="product:price" content={price?.toString()} /> 
+        <meta name="product:currency" content={currency} /> 
+        <meta name="product:availability" content={availability ? availability : "in stock"} /> 
+        <meta name="product:condition" content={condition ? condition : "New"} /> 
+        <meta name="product:brand" content={brand ? brand : "Sireesha Reddy Designer Studio"} /> 
+        <meta name="product:manufacturer" content={manufacturer ? manufacturer : "Sireesha Reddy Designer Studio"} /> 
+        <meta name="product:model" content={model ? model : "2024"} /> 
+        <meta name="product:sku" content={sku ? sku : "SRS2024"} /> 
+        <meta name="product:gtin8" content={gtin8 ? gtin8 : "12345678"} /> 
+        <meta name="product:gtin13" content={gtin13 ? gtin13 : "1234567890123"} /> 
         <meta property="og:type" content={type ? type : "product"} />
         <meta property="og:price:amount" content={price?.toString()} />
         <meta property="og:price:currency" content={currency} />
