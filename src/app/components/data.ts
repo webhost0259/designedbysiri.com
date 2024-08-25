@@ -1,0 +1,73 @@
+export const PRODUCTS = [
+  {
+    productId: '1',
+    orgId: 1,
+    storeId: 'A1',
+    sku: 'CAT001',
+    name: 'Silk Embroidered Saree',
+    description: 'Discover the elegance of tradition with our luxurious Silk Embroidered Saree. Handcrafted from pure silk, this saree features intricate zari work and delicate embroidery that adds a touch of regal sophistication to any occasion.',
+    price: 6352,
+    quantity: 10,
+    status: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    imageUrl: 'https://farm9.staticflickr.com/8505/8441256181_4e98d8bff5_z_d.jpg'
+  },
+  {
+    productId: '2',
+    orgId: 1,
+    storeId: 'A1',
+    sku: 'DOG001',
+    name: 'Dog',
+    description: 'A friendly dog',
+    price: 6892,
+    quantity: 15,
+    status: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    imageUrl: 'https://farm4.staticflickr.com/3075/3168662394_7d7103de7d_z_d.jpg'
+  },
+  {
+    productId: '3',
+    orgId: 1,
+    storeId: 'A1',
+    sku: 'CHE001',
+    name: 'Cheetah',
+    description: 'A fast cheetah',
+    price: 1000,
+    quantity: 5,
+    status: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    imageUrl: 'https://farm2.staticflickr.com/1533/26541536141_41abe98db3_z_d.jpg'
+  },
+  // {
+  //   productId: '4',
+  //   orgId: 1,
+  //   storeId: 'A1',
+  //   sku: 'BIRD001',
+  //   name: 'Bird',
+  //   description: 'A colorful bird',
+  //   price: 15.99,
+  //   quantity: 20,
+  //   status: true,
+  //   createdAt: new Date().toISOString(),
+  //   updatedAt: new Date().toISOString(),
+  //   imageUrl: 'https://farm4.staticflickr.com/3075/3168662394_7d7103de7d_z_d.jpg'
+  // },
+  // {
+  //   productId: '5',
+  //   orgId: 1,
+  //   storeId: 'A1',
+  //   sku: 'WHA001',
+  //   name: 'Whale',
+  //   description: 'A majestic whale',
+  //   price: 49.99,
+  //   quantity: 8,
+  //   status: true,
+  //   createdAt: new Date().toISOString(),
+  //   updatedAt: new Date().toISOString(),
+  //   imageUrl: 'https://farm4.staticflickr.com/3075/3168662394_7d7103de7d_z_d.jpg'
+  // },
+  // Add more products as needed
+];
