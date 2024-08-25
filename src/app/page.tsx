@@ -4,6 +4,7 @@ import SEO from './SEO/SEO';
 import Image from 'next/image'; // Import the 'Image' component from the appropriate library
 import SecondSection from './home-page-sections/SecondSection';
 import ThirdSection from './home-page-sections/ThirdSection';
+import { ApplicationDescription, ApplicationTitle } from './SEO/util';
 
 interface HomePageProps {
   productData: {
@@ -21,9 +22,9 @@ interface HomePageProps {
     <div className='text-black'>
       {/* SEO Component */}
       <SEO 
-        title={productData.title} 
-        description={productData.description} 
-        image={productData.image} 
+        title={ApplicationTitle} 
+        description={ApplicationDescription} 
+        image='/logo.png' 
         url="https://designedbysiri.com"
       />
 

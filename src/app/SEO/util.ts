@@ -36,7 +36,7 @@ export const ApplicationMSApplicationTileImage = '/mstile-150x150.png';
 
 export const generateProductSEOObject = (product: any) => {
   return {
-    title: product.title,
+    title: product.name,
     description: product.description,
     image: product.imageUrl,
     url: product.url,
