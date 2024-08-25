@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { ApplicationDateModified, ApplicationDatePublished, ApplicationDescription, ApplicationImage, ApplicationKeywords, ApplicationTitle, ApplicationURL } from './util';
+import { ApplicationCanonicalURL, ApplicationDateModified, ApplicationDatePublished, ApplicationDescription, ApplicationImage, ApplicationKeywords, ApplicationTitle, ApplicationURL } from './util';
 
 interface SEOProps {
   title?: string;
@@ -9,12 +9,16 @@ interface SEOProps {
   datePublished?: string;
   dateModified?: string;
   keywords?: string;
+  canonical?: string;
 }
 
-const SEO: React.FC<SEOProps> = ({ title, description, image, url, datePublished, dateModified, keywords }) => {
+const SEO: React.FC<SEOProps> = ({ title, description, image, url, datePublished, dateModified, keywords, canonical }) => {
+  
+  image = 'https://develop.d23v49il7gq5ot.amplifyapp.com' + image;
+  
   return (
     <Head>
-        <title>{title ? title : ApplicationTitle + ApplicationDescription + ApplicationKeywords}</title>
+        <title>{title ? title : ApplicationTitle + ApplicationKeywords}</title>
         <meta name="description" content={description ? description : ApplicationDescription} />
         <meta name="keywords" content={keywords ? keywords : ApplicationKeywords}></meta>
         <meta name="robots" content='index, follow' />
@@ -22,6 +26,7 @@ const SEO: React.FC<SEOProps> = ({ title, description, image, url, datePublished
         <meta property="og:description" content={description ? description : ApplicationDescription} />
         <meta property="og:image" content={image ? image : ApplicationImage} />
         <meta property="og:url" content={url ? url : ApplicationURL} />
+        <link rel="canonical" href={canonical ? canonical : ApplicationCanonicalURL} /> {/* Add canonical link tag */}
         <script type="application/ld+json">
           {`{
             "@context": "https://schema.org",

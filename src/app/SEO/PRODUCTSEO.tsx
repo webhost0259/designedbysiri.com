@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { ApplicationDateModified, ApplicationDatePublished, 
+import { ApplicationCanonicalURL, ApplicationDateModified, ApplicationDatePublished, 
         ApplicationDescription, ApplicationImage, ApplicationKeywords, 
         ApplicationTitle, ApplicationURL } from './util';
 
@@ -8,6 +8,7 @@ interface PRODUCTSEOProps {
   description?: string;
   image?: string;
   url?: string;
+  canonical?: string;
   datePublished?: string;
   dateModified?: string;
   keywords?: string;
@@ -30,11 +31,12 @@ const PRODUCTSEO: React.FC<PRODUCTSEOProps> =
             title, description, image, url, 
             datePublished, dateModified, keywords,
             type, price, currency, availability, condition,
-            brand, manufacturer, model, sku, gtin8, gtin13
+            brand, manufacturer, model, sku, gtin8, gtin13, canonical
           }) => {
+    
   return (
     <Head>
-        <title>{title ? title + description + keywords : ApplicationTitle + ApplicationDescription + ApplicationKeywords}</title>
+        <title>{title ? title + keywords : ApplicationTitle + ApplicationDescription + ApplicationKeywords}</title>
         <meta name="description" content={description ? description : ApplicationDescription} />
         <meta name="keywords" content={keywords ? keywords : ApplicationKeywords}></meta>
         <meta name="robots" content='index, follow' />
@@ -49,6 +51,10 @@ const PRODUCTSEO: React.FC<PRODUCTSEOProps> =
         <meta name="product:gtin8" content={gtin8 ? gtin8 : "12345678"} /> 
         <meta name="product:gtin13" content={gtin13 ? gtin13 : "1234567890123"} /> 
         <meta property="og:type" content={type ? type : "product"} />
+        <meta property="og:title" content={title ? title : ApplicationTitle} />
+        <meta property="og:description" content={description ? description : ApplicationDescription} />
+        <meta property="og:image" content={image ? image : ApplicationImage} />
+        <meta property="og:url" content={url ? url : ApplicationURL} />
         <meta property="og:price:amount" content={price?.toString()} />
         <meta property="og:price:currency" content={currency} />
         <meta property="og:availability" content={availability ? availability : "in stock"} />
@@ -63,10 +69,7 @@ const PRODUCTSEO: React.FC<PRODUCTSEOProps> =
         <meta property="og:locale" content="en_IN" />
         <meta property="og:locale:alternate" content="en_US" />
         <meta property="og:locale:alternate" content="te_IN" />
-        <meta property="og:title" content={title ? title : ApplicationTitle} />
-        <meta property="og:description" content={description ? description : ApplicationDescription} />
-        <meta property="og:image" content={image ? image : ApplicationImage} />
-        <meta property="og:url" content={url ? url : ApplicationURL} />
+        <link rel="canonical" href={canonical ? canonical : ApplicationCanonicalURL} /> {/* Add canonical link tag */}
         <script type="application/ld+json">
           {`{
             "@context": "https://schema.org",
