@@ -4,8 +4,8 @@ export const PRODUCTS = [
     orgId: 1,
     storeId: 'A1',
     sku: 'CAT001',
-    name: 'Silk Embroidered Saree',
-    description: 'Discover the elegance of tradition with our luxurious Silk Embroidered Saree. Handcrafted from pure silk, this saree features intricate zari work and delicate embroidery that adds a touch of regal sophistication to any occasion.',
+    name: 'Women\'s Silk Embroidered Saree (CAT001)',
+    description: 'Immerse yourself in luxury with our handcrafted Silk Embroidered Saree. Made from pure silk, it features **intricate zari work and delicate embroidery**, adding a touch of **regal sophistication** to any occasion. **Shop now for a timeless look!**', // Include relevant keywords and a call to action
     price: 6352,
     quantity: 10,
     status: true,
@@ -18,8 +18,8 @@ export const PRODUCTS = [
     orgId: 1,
     storeId: 'A1',
     sku: 'DOG001',
-    name: 'Dog',
-    description: 'A friendly dog',
+    name: 'Men\'s Wedding Costume (DOG001)',  // Include target audience and animal type for better searchability
+    description: 'Bring your furry friend\'s inner animal to life with our adorable [Animal] Costume! Made with high-quality materials for comfort and durability, this costume is perfect for Halloween, pet parades, or playtime. **Order yours today and let the fun begin!**',  // Include relevant keywords and a call to action
     price: 6892,
     quantity: 15,
     status: true,
@@ -32,8 +32,8 @@ export const PRODUCTS = [
     orgId: 1,
     storeId: 'A1',
     sku: 'CHE001',
-    name: 'Cheetah',
-    description: 'A fast cheetah',
+    name:'Men\'s Cheetah Costume (CHE001)',  // Include target audience for better searchability
+    description:'Run wild with our Cheetah Costume! This costume is perfect for bringing the **speed and agility** of a cheetah to life. Made with comfortable materials, it\'s ideal for **Halloween, animal-themed parties, or imaginative playtime**. **Order yours today and unleash your inner cheetah!**', // Include relevant keywords and a call to action
     price: 1000,
     quantity: 5,
     status: true,

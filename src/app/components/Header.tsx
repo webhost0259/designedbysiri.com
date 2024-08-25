@@ -5,6 +5,7 @@ import Image from 'next/image';
 import SearchBar from './SearchBar';
 import { CgProfile } from "react-icons/cg";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
+import Link from 'next/link';
 
 const logoPath = '/logo.png';
 const Header = () => {
@@ -21,8 +22,10 @@ const Header = () => {
       <div className="container mx-auto px-16 py-2">
         <div className="flex justify-between items-center">
           <div className="flex flex-row items-center space-x-4 logo">
-            <Image src={logoPath} alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" width={48} height={48} className='rounded-lg'/>
-            <p className="font-semibold text-xl">Designed by Siri</p>
+            <Link href="/" className='flex flex-row items-center space-x-4'>
+              <Image src={logoPath} alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" width={48} height={48} className='rounded-lg'/>
+              <p className="font-semibold text-xl">Designed by Siri</p>
+            </Link>
             <nav className="navbar">
               <ul className="flex space-x-8 ml-16 ">
                 <Menu as="div" className="relative">

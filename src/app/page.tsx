@@ -1,6 +1,6 @@
 // pages/index.tsx
 import { GetServerSideProps } from 'next';
-import SEO from './components/SEO';
+import SEO from './SEO/SEO';
 import Image from 'next/image'; // Import the 'Image' component from the appropriate library
 import SecondSection from './home-page-sections/SecondSection';
 import ThirdSection from './home-page-sections/ThirdSection';

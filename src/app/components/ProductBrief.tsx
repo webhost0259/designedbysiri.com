@@ -25,7 +25,7 @@ const length = 12;
 const ProductBrief = ({ product } : ProductBriefProps) => {
 
   return (
-    <div className="p-1 m-1 min-w-80 bg-white text-black rounded-lg shadow-lg">
+    <div className="p-1 m-1 min-w-80 bg-white text-black rounded-lg shadow-lg item">
       {/* Product Images */}
       <Link href={`/products/${product.productId}`}>
         <div className="flex flex-col mb-4">
@@ -39,29 +39,29 @@ const ProductBrief = ({ product } : ProductBriefProps) => {
             />
           </div>
           {/* {product.images.length > 1 && (
-            <div className="flex mt-2 space-x-2">
-              {product.images.slice(1).map((img, index) => (
-                <img
-                  key={index}
-                  src={img}
-                  alt={`Product image ${index + 1}`}
-                  className="w-16 h-16 object-cover rounded"
-                />
-              ))}
-            </div>
-          )} */}
-        </div>
-        <div className='flex flex-col p-2'>
-          <div className='flex flex-row justify-between'>
-            <h2 className="text-xl font-medium">{product.name}</h2>
-            <h2 className="text-xl font-medium">Rs.{product.price.toFixed(2)}</h2>
-          </div>
-          <div className='flex justify-start mt-2'>
-            {product.description && <p className="text-gray-600 mb-2.5 text-sm leading-6.5">{product.description}</p>}
-          </div>
-        </div>
-      </Link>
-      {/* Product Details */}
+                <div className="flex mt-2 space-x-2">
+                  {product.images.slice(1).map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    alt={`Product image ${index + 1}`}
+                    className="w-16 h-16 object-cover rounded"
+                  />
+                  ))}
+                </div>
+                )} */}
+              </div>
+              <div className='flex flex-col p-2 max-w-72'>
+                <div className='flex flex-row justify-between space-x-4'>
+                  <h2 className="text-xl font-medium">{product.name}</h2>
+                </div>
+                <div className='flex justify-start mt-2 '>
+                  {product.description && <p className="text-gray-600 mb-2.5 text-sm leading-6.5">{product.description.length > 50 ? product.description.slice(0, 50) + '...' : product.description}</p>}
+                </div>
+                <h2 className="flex text-xl font-medium justify-start">Rs.{product.price.toFixed(2)}</h2>
+              </div>
+              </Link>
+              {/* Product Details */}
       <Button className="items-center gap-2 bg-white py-2.5 px-8 mb-4 font-semibold border-2 rounded-full hover:bg-gray-800 hover:text-gray-200 transition duration-700">
         Add to Cart
       </Button>
