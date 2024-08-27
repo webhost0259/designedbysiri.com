@@ -9,7 +9,7 @@ interface ProductDetailsProps {
 const ProductDetails = ({ product } : ProductDetailsProps) => {
   return(
     <div className="flex flex-col text-black">
-      <div className="flex flex-row space-x-32 mx-32">
+      <div className="flex flex-row justify-center space-x-32 mx-32">
         <div className="relative rounded-lg w-96 h-[512px] border-2 border-gray-400 p-4">
           <Image 
             src={product.imageUrl} 

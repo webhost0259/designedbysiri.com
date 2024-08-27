@@ -6,7 +6,7 @@ const ThirdSection = () => {
     <div className="px-16 mt-16 pb-16">
       <h1 className="font-bold text-3xl">Shop our top categories</h1>
       <div className="mt-6">
-        <div className="grid grid-cols-3 gap-6">
+        <div className="flex flex-row space-x-16 justify-center">
           <LongImageBrief image="/images/saree-1.jpeg" name="Sarees" url="/categories"/>
           <LongImageBrief image="/images/anarkali-suits.jpeg" name="Anarkali" url="/categories"/>
           <LongImageBrief image="/images/shararas.jpeg" name="Shararas" url="/categories"/>

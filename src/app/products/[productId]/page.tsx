@@ -32,7 +32,7 @@ const ProductPage = async({ params: { productId } }: { params: { productId: stri
   const seo = generateProductSEOObject(product);
 
   return (
-    <main className='min-h-screen mx-16 p-4 mt-8'>
+    <main className='flex flex-col justify-center min-h-screen mx-16 p-4 mt-8'>
       <PRODUCTSEO
         title={seo.title}
         description={seo.description || `Buy ${product.name} from our store.`}
