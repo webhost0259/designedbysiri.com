@@ -7,13 +7,11 @@ import { CgProfile } from "react-icons/cg";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp  } from "react-icons/fa6";
-import { useCart } from '../swr/useCart';
 
 const logoPath = '/logo.png';
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const { cart, addItem, removeItem } = useCart();
 
   const handleSearch = (query : string) => {
     console.log('Search query:', query);

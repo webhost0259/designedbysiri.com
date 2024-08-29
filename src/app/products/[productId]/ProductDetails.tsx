@@ -1,6 +1,5 @@
 'use client'
 import { Product } from "@/app/components/ProductBrief"
-import { useCart } from "@/app/swr/useCart"
 import { Button } from "@headlessui/react"
 import Image from "next/image"
 import { useState } from "react"
@@ -10,14 +9,7 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product } : ProductDetailsProps) => {
-  const { addItem } = useCart();
   const [loading, setLoading] = useState(false);
-
-  const handleAddToCart = async () => {
-    setLoading(true);
-    await addItem({ id: product.productId, name: product.name, quantity: 1 });
-    setLoading(false);
-  };
   
   return(
     <div className="flex flex-col text-black">
@@ -42,7 +34,7 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
           <div className="flex flex-row space-x-4 w-full">
             <Button 
               className="bg-green-600 text-white font-semibold rounded-lg min-w-64 p-4"
-              onClick={handleAddToCart}
+              // onClick={handleAddToCart}
               >
                 Add to Bag
               </Button>
