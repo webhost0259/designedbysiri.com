@@ -1,12 +1,24 @@
+'use client'
 import { Product } from "@/app/components/ProductBrief"
+import { useCart } from "@/app/swr/useCart"
 import { Button } from "@headlessui/react"
 import Image from "next/image"
+import { useState } from "react"
 
 interface ProductDetailsProps {
   product: Product
 }
 
 const ProductDetails = ({ product } : ProductDetailsProps) => {
+  const { addItem } = useCart();
+  const [loading, setLoading] = useState(false);
+
+  const handleAddToCart = async () => {
+    setLoading(true);
+    await addItem({ id: product.productId, name: product.name, quantity: 1 });
+    setLoading(false);
+  };
+  
   return(
     <div className="flex flex-col text-black">
       <div className="flex flex-row justify-center space-x-32 mx-32">
@@ -28,7 +40,12 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
           <p className="text-lg font-semibold">SKU: {product.sku}</p>
           <p className="text-lg font-semibold">Status: {product.status ? 'Available' : 'Out of Stock'}</p>
           <div className="flex flex-row space-x-4 w-full">
-            <Button className="bg-green-600 text-white font-semibold rounded-lg min-w-64 p-4">Add to Bag</Button>
+            <Button 
+              className="bg-green-600 text-white font-semibold rounded-lg min-w-64 p-4"
+              onClick={handleAddToCart}
+              >
+                Add to Bag
+              </Button>
             <Button className="bg-gray-200 text-black font-semibold p-4 rounded-lg min-w-64 border-b-2 border-gray-500">+ Wishlist</Button>
           </div>
         </div>
