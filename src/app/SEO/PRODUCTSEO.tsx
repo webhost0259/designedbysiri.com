@@ -36,10 +36,15 @@ const PRODUCTSEO: React.FC<PRODUCTSEOProps> =
     
   return (
     <Head>
-        <title>{title ? title + keywords : ApplicationTitle + ApplicationDescription + ApplicationKeywords}</title>
+        <title>{title ? title  : ApplicationTitle + ApplicationDescription + ApplicationKeywords}</title>
         <meta name="description" content={description ? description : ApplicationDescription} />
         <meta name="keywords" content={keywords ? keywords : ApplicationKeywords}></meta>
         <meta name="robots" content='index, follow' />
+        <meta property="og:url" content={url ? url : ApplicationURL} />
+        <meta property="og:title" content={title ? title : ApplicationTitle} />
+        <meta property="og:description" content={description ? description : ApplicationDescription} />
+        <meta property="og:image" content={image ? image : ApplicationImage} />
+        <meta property="og:type" content={type ? type : "website"} />
         <meta name="product:price" content={price?.toString()} /> 
         <meta name="product:currency" content={currency} /> 
         <meta name="product:availability" content={availability ? availability : "in stock"} /> 
@@ -50,11 +55,6 @@ const PRODUCTSEO: React.FC<PRODUCTSEOProps> =
         <meta name="product:sku" content={sku ? sku : "SRS2024"} /> 
         <meta name="product:gtin8" content={gtin8 ? gtin8 : "12345678"} /> 
         <meta name="product:gtin13" content={gtin13 ? gtin13 : "1234567890123"} /> 
-        <meta property="og:type" content={type ? type : "product"} />
-        <meta property="og:title" content={title ? title : ApplicationTitle} />
-        <meta property="og:description" content={description ? description : ApplicationDescription} />
-        <meta property="og:image" content={image ? image : ApplicationImage} />
-        <meta property="og:url" content={url ? url : ApplicationURL} />
         <meta property="og:price:amount" content={price?.toString()} />
         <meta property="og:price:currency" content={currency} />
         <meta property="og:availability" content={availability ? availability : "in stock"} />
