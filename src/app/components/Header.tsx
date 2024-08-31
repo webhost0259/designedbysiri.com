@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/react';
 import Image from 'next/image';
 import SearchBar from './SearchBar';
@@ -7,11 +7,14 @@ import { CgProfile } from "react-icons/cg";
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp  } from "react-icons/fa6";
+import useCart from '../services/hooks/useCart';
+import { CARTKEY, SIRICARTUPDATE } from '../services/constants';
 
 const logoPath = '/logo.png';
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [cartCount, setCartCount] = useState<number>(0);
 
   const handleSearch = (query : string) => {
     console.log('Search query:', query);
@@ -30,14 +33,38 @@ const Header = () => {
     { name: 'Shararas', image: '/category-icons/anarkali-icon.jpeg', items: 240 },
   ];
 
+  useEffect(() => {
+    const updateCartCount = () => {
+      const cart = JSON.parse(localStorage.getItem(CARTKEY) || '[]');
+      setCartCount(cart.length);
+    };
+
+    // Initialize cart count
+    updateCartCount();
+
+    // Event listener for local storage changes
+    window.addEventListener(SIRICARTUPDATE, updateCartCount);
+
+    // Cleanup listener on unmount
+    return () => {
+      window.removeEventListener(SIRICARTUPDATE, updateCartCount);
+    };
+  }, []);
+
   console.log('Header Rendered isOpen :', isOpen);
   return (
     <header className="header py-2 bg-white text-gray-700 font-medium border-b-2 shadow-sm shadow-cyan-500/50">
-      <div className="container mx-auto px-16 py-2">
+      <div className="container mx-auto py-2">
         <div className="flex justify-between items-center">
           <div className="flex flex-row items-center space-x-4 logo">
             <Link href="/" className='flex flex-row items-center space-x-4'>
-              <Image src={logoPath} alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" width={48} height={48} className='rounded-lg'/>
+              <Image 
+                src={logoPath} 
+                alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" 
+                width={48} 
+                height={48} 
+                className='rounded-lg shadow-lg'
+              />
               <p className="font-semibold text-xl">Designed by Siri</p>
             </Link>
             <nav className="navbar">
@@ -98,7 +125,12 @@ const Header = () => {
             </div>
             <div className='flex flex-row items-center'>
               <HiOutlineShoppingCart className='mr-2'/>
-              <a href="#" className="text-gray-700 hover:text-green-600 hover:font-semibold">Cart</a>
+              <a 
+                href="/cart" 
+                className="text-gray-700 hover:text-green-600 hover:font-semibold"
+              >
+                Cart {cartCount ? `(${cartCount})` : null}
+              </a>
             </div>
           </div>
         </div>
