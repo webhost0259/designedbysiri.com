@@ -75,7 +75,7 @@ const CartPage = () => {
           <div className="flex flex-col min-w-80 space-y-4 justify-end border-2 rounded-md border-gray-300 py-4 px-2">
             {
               cart.map(item => (
-                  <div className='flex flex-row justify-between space-x-4 max-w-80'>
+                  <div key={item.productId} className='flex flex-row justify-between space-x-4 max-w-80'>
                     <h6 className="text-sm">{item.name}</h6>
                     <h6 className="text-sm">({item.price} * {item.quantity}) = Rs.{(item.price * item.quantity).toFixed(2)}</h6>
                   </div>
