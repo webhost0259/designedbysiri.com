@@ -5,8 +5,8 @@ import { Product } from '@/app/components/ProductBrief';
 import { PRODUCTS } from '@/app/components/data';
 import ProductDetails from './ProductDetails';
 import ThirdSection from '@/app/home-page-sections/ThirdSection';
-import PRODUCTSEO from '@/app/SEO/PRODUCTSEO';
 import { generateProductSEOObject } from '@/app/SEO/util';
+import ProductSEO from '@/app/SEO/PRODUCTSEO';
 
 const fetchProductById = async (productId: string): Promise<Product | null> => {
   try {
@@ -23,17 +23,18 @@ const fetchProductById = async (productId: string): Promise<Product | null> => {
   }
 };
 
-const ProductPage = async({ params: { productId } }: { params: { productId: string } }) => {
+const ProductPage = async ({ params: { productId } }: { params: { productId: string } }) => {
   const product = await fetchProductById(productId);
 
   if (!product) {
     return <div>Product not found</div>;
   }
+
   const seo = generateProductSEOObject(product);
 
   return (
     <main className='flex flex-col justify-center min-h-screen laptop:mx-16 p-4 mt-8'>
-      <PRODUCTSEO
+      <ProductSEO
         title={seo.title}
         description={seo.description}
         image={seo.image || '/default-product-image.jpg'}
@@ -52,6 +53,7 @@ const ProductPage = async({ params: { productId } }: { params: { productId: stri
         sku={seo.sku}
         gtin8={seo.gtin8}
         gtin13={seo.gtin13}
+        canonical={seo.url} // Add the 'canonical' property
       />
       <ProductDetails product={product} />
       <ThirdSection />
