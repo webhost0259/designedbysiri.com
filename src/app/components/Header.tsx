@@ -100,9 +100,6 @@ const Header = () => {
         </div>
         <MobileMenu openMenu={openMenu} toggleMenu={toggleMenu}/>
       </div>
-      {/* Code Only for Tablets ---------------------------------------- */}
-
-      
       {/* Code Only for Laptop ---------------------------------------- */}
       <div className="hidden laptop:block container mx-auto py-2 lg:visible md:hidden sm:hidden">
         <div className="flex justify-between items-center">

@@ -31,7 +31,7 @@ interface HomePageProps {
       {/* Page Content */}
       <main className="container mx-auto">
         <SecondSection />
-        <ThirdSection />
+        {/* <ThirdSection /> */}
       </main>
     </div>
   );

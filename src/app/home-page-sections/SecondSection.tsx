@@ -17,10 +17,10 @@ const SecondSection = () => {
       >
         <div className="flex items-center justify-center h-full bg-opacity-50 bg-black">
           <div className="text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            <h1 className="text-2xl laptop:text-4xl font-bold mb-4">
               Sireesha Reddy Designer Studio
             </h1>
-            <p className="text-lg md:text-2xl mb-8">
+            <p className="text-sm mb-8 text-wrap">
               Handpicked collections of Indian traditional attire.
             </p>
             <div>
@@ -31,14 +31,12 @@ const SecondSection = () => {
                 Shop Now
               </a>
             </div>
-            <div className='flex flex-row mt-6 space-x-4'>
-                {
-                  products.map((product, index) => {
-                    return(
-                      <ProductBrief key={index} product={product} />
-                    )
-                  })
-                }
+            <div className="w-full overflow-x-auto">
+              <div className="flex flex-nowrap space-x-4 mt-6">
+                {products.map((product, index) => (
+                  <ProductBrief key={index} product={product} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
