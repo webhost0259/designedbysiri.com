@@ -54,7 +54,7 @@ const CartPage = () => {
                   <Image
                     src={item.imageUrl}
                     alt={item.name}
-                    layout="fill"
+                    fill={true}
                     className="rounded-lg object-cover"
                   />
                 </div>

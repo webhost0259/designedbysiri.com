@@ -24,9 +24,8 @@ const Categories = () => {
               <Image
                 src={category.image}
                 alt={category.name}
-                layout="fill"
-                objectFit="contain"
-                className="rounded"
+                fill={true}
+                className="rounded object-contain"
               />
             </div>
             <div>

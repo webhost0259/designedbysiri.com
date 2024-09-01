@@ -33,9 +33,8 @@ const ProductBrief = ({ product } : ProductBriefProps) => {
             <Image 
               src={product.imageUrl} 
               alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" 
-              layout="fill"
-              objectFit="cover"  // Adjusts how the image fits the container
-              className="transition-transform duration-700 transform hover:scale-105"
+              fill={true}
+              className="object-cover transition-transform duration-700 transform hover:scale-105"
             />
           </div>
           {/* {product.images.length > 1 && (

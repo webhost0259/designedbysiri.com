@@ -39,9 +39,8 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
           <Image 
             src={product.imageUrl} 
             alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" 
-            layout="fill"
-            objectFit="cover"  // Adjusts how the image fits the container
-            className="transition-transform duration-700 transform hover:scale-105 p-4"
+            fill={true}
+            className="object-cover transition-transform duration-700 transform hover:scale-105 p-4"
           />
         </div>
         <div className="flex flex-col space-y-4 w-full px-4 laptop:max-w-[512px]">

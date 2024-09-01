@@ -31,9 +31,8 @@ const LongImageBrief = ({ image, name, url } : LongImageBriefProps) => {
           <Image 
             src={image} 
             alt={name} 
-            layout="fill"
-            objectFit="cover"
-            className="transition-transform duration-700 transform hover:scale-105"
+            fill={true}
+            className="object-cover transition-transform duration-700 transform hover:scale-105"
           />
           <h2 className="absolute text-3xl top-4 left-4 font-bold mt-2 text-gray-300 z-10">{name}</h2>
         </div>

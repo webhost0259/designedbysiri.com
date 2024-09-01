@@ -1,5 +1,3 @@
-// pages/index.js or components/SecondSection.js
-import Image from 'next/image';
 import { PRODUCTS } from '../components/data';
 import ProductBrief from '../components/ProductBrief';
 
