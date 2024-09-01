@@ -35,7 +35,7 @@ const ProductPage = async({ params: { productId } }: { params: { productId: stri
     <main className='flex flex-col justify-center min-h-screen laptop:mx-16 p-4 mt-8'>
       <PRODUCTSEO
         title={seo.title}
-        description={seo.description || `Buy ${product.name} from our store.`}
+        description={seo.description}
         image={seo.image || '/default-product-image.jpg'}
         url={`https://designedbysiri.com/products/${product.productId}`}
         datePublished={seo.datePublished}

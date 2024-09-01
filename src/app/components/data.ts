@@ -18,8 +18,8 @@ export const PRODUCTS = [
     orgId: 1,
     storeId: 'A1',
     sku: 'DOG001',
-    name: 'Sharwani',  // Include target audience and animal type for better searchability
-    description: 'Bring your furry friend\'s inner animal to life with our adorable [Animal] Costume! Made with high-quality materials for comfort and durability, this costume is perfect for Halloween, pet parades, or playtime. **Order yours today and let the fun begin!**',  // Include relevant keywords and a call to action
+    name: 'Womens Cotton Embroidered Kurta - Elegant Ethnic Wear for Special Occasions',  // Include target audience and animal type for better searchability
+    description: 'This beautiful cotton kurta features intricate embroidery and a relaxed fit. Perfect for weddings, parties, or any special occasion. Shop now for this stylish and comfortable Indian traditional wear.',  // Include relevant keywords and a call to action
     price: 6892,
     quantity: 15,
     status: true,

@@ -36,14 +36,14 @@ const PRODUCTSEO: React.FC<PRODUCTSEOProps> =
     
   return (
     <Head>
-        <title>{title ? title  : ApplicationTitle + ApplicationDescription + ApplicationKeywords}</title>
-        <meta name="description" content={description ? description : ApplicationDescription} />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="keywords" content={keywords ? keywords : ApplicationKeywords}></meta>
         <meta name="robots" content='index, follow' />
         <meta property="og:url" content={url ? url : ApplicationURL} />
-        <meta property="og:title" content={title ? title : ApplicationTitle} />
-        <meta property="og:description" content={description ? description : ApplicationDescription} />
-        <meta property="og:image" content={image ? image : ApplicationImage} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
         <meta property="og:type" content={type ? type : "website"} />
         <meta name="product:price" content={price?.toString()} /> 
         <meta name="product:currency" content={currency} /> 
