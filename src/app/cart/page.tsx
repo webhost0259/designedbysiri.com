@@ -46,7 +46,7 @@ const CartPage = () => {
       {cart.length === 0 ? (
         <p className="text-lg">Your cart is empty.</p>
       ) : (
-        <div className="flex flex-row  space-x-4 justify-between">
+        <div className="flex flex-col laptop:flex-row laptop:space-x-4 justify-between">
           <div className='flex flex-col w-full space-y-4'>
             {cart.map(item => (
               <div key={item.productId} className="flex w-full items-center space-x-4 p-4 border border-gray-300 rounded-lg">
@@ -72,10 +72,10 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col min-w-80 space-y-4 justify-end border-2 rounded-md border-gray-300 py-4 px-2 bg-gray-100">
+          <div className="flex flex-col min-w-80 space-y-4 mt-4 laptop:mt-0 justify-end border-2 rounded-md border-gray-300 py-4 px-2 bg-gray-100">
             {
               cart.map(item => (
-                  <div key={item.productId} className='flex flex-row justify-between space-x-4 max-w-80'>
+                  <div key={item.productId} className='flex flex-row justify-between space-x-4 laptop:max-w-80'>
                     <h6 className="text-sm">{item.name}</h6>
                     <h6 className="text-sm">({item.price} * {item.quantity}) = Rs.{(item.price * item.quantity).toFixed(2)}</h6>
                   </div>

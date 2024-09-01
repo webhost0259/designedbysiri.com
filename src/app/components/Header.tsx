@@ -84,15 +84,13 @@ const Header = () => {
               <CgProfile className='mr-2'/>
               <a href="#" className="transition-all duration-200 hover:text-green-600 hover:font-semibold">Account</a>
             </div> */}
-            <div className='flex flex-row items-center'>
+            <a 
+              href="/cart" 
+              className="flex flex-row items-center text-gray-700 hover:text-green-600 hover:font-semibold"
+            >
               <HiOutlineShoppingCart className='mr-2' size={32}/>
-              {/* <a 
-                href="/cart" 
-                className="text-gray-700 hover:text-green-600 hover:font-semibold"
-              >
-                Cart {cartCount ? `(${cartCount})` : null}
-              </a> */}
-            </div>
+              {cartCount ? `(${cartCount})` : null}
+            </a>
           </div>
         </div>
         <div className='mt-4'>

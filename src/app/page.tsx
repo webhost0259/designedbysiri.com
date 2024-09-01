@@ -29,9 +29,9 @@ interface HomePageProps {
       />
 
       {/* Page Content */}
-      <main className="container mx-auto">
+      <main>
         <SecondSection />
-        {/* <ThirdSection /> */}
+        <ThirdSection />
       </main>
     </div>
   );

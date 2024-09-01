@@ -7,9 +7,10 @@ const SecondSection = () => {
   // Sample data for product cards
   const products = PRODUCTS;
 
+
   return (
     <section
-        className="bg-cover bg-center h-screen"
+        className="bg-cover bg-center h-[614px] relative"
         style={{
           backgroundImage:
             "url('https://images.pexels.com/photos/1778353/pexels-photo-1778353.jpeg')",
@@ -31,7 +32,7 @@ const SecondSection = () => {
                 Shop Now
               </a>
             </div>
-            <div className="w-full overflow-x-auto">
+            <div className="max-w-96 tablet:max-w-[640px] laptop:min-w-[1024px] overflow-x-auto">
               <div className="flex flex-nowrap space-x-4 mt-6">
                 {products.map((product, index) => (
                   <ProductBrief key={index} product={product} />
