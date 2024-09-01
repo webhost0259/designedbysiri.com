@@ -9,12 +9,19 @@ import Link from 'next/link';
 import { FaChevronDown, FaChevronUp  } from "react-icons/fa6";
 import useCart from '../services/hooks/useCart';
 import { CARTKEY, SIRICARTUPDATE } from '../services/constants';
+import { RxHamburgerMenu } from "react-icons/rx";
+import MobileMenu from './MobileMenu';
 
 const logoPath = '/logo.png';
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [cartCount, setCartCount] = useState<number>(0);
+  const [openMenu, setOpenMenu] = useState(false);
+  
+  const toggleMenu = (close: boolean) => {
+    setOpenMenu(close);
+  };
 
   const handleSearch = (query : string) => {
     console.log('Search query:', query);
@@ -53,8 +60,51 @@ const Header = () => {
 
   console.log('Header Rendered isOpen :', isOpen);
   return (
-    <header className="header py-2 bg-white text-gray-700 font-medium border-b-2 shadow-sm shadow-cyan-500/50">
-      <div className="container mx-auto py-2">
+    <header className="py-2 bg-white text-gray-700 font-medium border-b-2 shadow-sm shadow-cyan-500/50">
+      {/* Code Only for Mobiles ---------------------------------------- */}
+      <div className="block laptop:hidden px-2">
+        <div className="flex justify-between items-center">
+          <div>
+            <RxHamburgerMenu size={32} onClick={() => toggleMenu(true)}/>
+          </div>
+          <div className="flex flex-row items-center space-x-4 logo">
+            <Link href="/" className='flex flex-row items-center space-x-4'>
+              <Image 
+                src={logoPath} 
+                alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" 
+                width={48} 
+                height={48} 
+                className='rounded-lg shadow-lg'
+              />
+              <p className="font-semibold text-xl">Designed by Siri</p>
+            </Link>
+          </div>
+          <div className="flex flex-row account-cart space-x-8">
+            {/* <div className='flex flex-row items-center'>
+              <CgProfile className='mr-2'/>
+              <a href="#" className="transition-all duration-200 hover:text-green-600 hover:font-semibold">Account</a>
+            </div> */}
+            <div className='flex flex-row items-center'>
+              <HiOutlineShoppingCart className='mr-2' size={32}/>
+              {/* <a 
+                href="/cart" 
+                className="text-gray-700 hover:text-green-600 hover:font-semibold"
+              >
+                Cart {cartCount ? `(${cartCount})` : null}
+              </a> */}
+            </div>
+          </div>
+        </div>
+        <div className='mt-4'>
+          <SearchBar onSearch={handleSearch} placeholder="Search Products"/>
+        </div>
+        <MobileMenu openMenu={openMenu} toggleMenu={toggleMenu}/>
+      </div>
+      {/* Code Only for Tablets ---------------------------------------- */}
+
+      
+      {/* Code Only for Laptop ---------------------------------------- */}
+      <div className="hidden laptop:block container mx-auto py-2 lg:visible md:hidden sm:hidden">
         <div className="flex justify-between items-center">
           <div className="flex flex-row items-center space-x-4 logo">
             <Link href="/" className='flex flex-row items-center space-x-4'>

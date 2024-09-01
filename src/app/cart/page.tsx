@@ -41,7 +41,7 @@ const CartPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 min-h-screen">
+    <div className="container mx-auto px-4 py-6 min-h-screen text-black">
       <h1 className="text-3xl font-bold mb-4">Your Cart</h1>
       {cart.length === 0 ? (
         <p className="text-lg">Your cart is empty.</p>
@@ -72,7 +72,7 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col min-w-80 space-y-4 justify-end border-2 rounded-md border-gray-300 py-4 px-2">
+          <div className="flex flex-col min-w-80 space-y-4 justify-end border-2 rounded-md border-gray-300 py-4 px-2 bg-gray-100">
             {
               cart.map(item => (
                   <div key={item.productId} className='flex flex-row justify-between space-x-4 max-w-80'>
