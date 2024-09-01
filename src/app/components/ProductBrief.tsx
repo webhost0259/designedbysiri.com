@@ -28,8 +28,8 @@ const ProductBrief = ({ product } : ProductBriefProps) => {
     <div className="p-1 m-1 min-w-80 bg-white text-black rounded-lg shadow-lg item">
       {/* Product Images */}
       <Link href={`/products/${product.productId}`}>
-        <div className="flex flex-col mb-4">
-          <div className="relative w-80 h-48">
+        <div className="flex flex-col items-stretch mb-4">
+          <div className="relative w-76 h-48">
             <Image 
               src={product.imageUrl} 
               alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" 
@@ -49,21 +49,21 @@ const ProductBrief = ({ product } : ProductBriefProps) => {
                   ))}
                 </div>
                 )} */}
-              </div>
-              <div className='flex flex-col p-2 max-w-72'>
-                <div className='flex flex-row justify-between space-x-4'>
-                  <h2 className="text-xl font-medium">{product.name}</h2>
-                </div>
-                <div className='flex justify-start mt-2 '>
-                  {product.description && <p className="text-gray-600 mb-2.5 text-sm leading-6.5">{product.description.length > 50 ? product.description.slice(0, 50) + '...' : product.description}</p>}
-                </div>
-                <h2 className="flex text-xl font-medium justify-start">Rs.{product.price.toFixed(2)}</h2>
-              </div>
-              </Link>
+          </div>
+          <div className='flex flex-col h-48 items-stretch p-2 max-w-72 relative'>
+            <div className='flex flex-row justify-start space-x-4'>
+              <h2 className="text-md font-medium">{product.name}</h2>
+            </div>
+            <div className='flex justify-start mt-2 '>
+              {product.description && <p className="text-gray-600 mb-2.5 text-sm leading-6.5">{product.description.length > 50 ? product.description.slice(0, 50) + '...' : product.description}</p>}
+            </div>
+            <h2 className="absolute right-4 bottom-4 flex text-sm font-medium">Rs.{product.price.toFixed(2)}</h2>
+          </div>
+        </Link>
               {/* Product Details */}
-      <Button className="items-center gap-2 bg-white py-2.5 px-8 mb-4 font-semibold border-2 rounded-full hover:bg-gray-800 hover:text-gray-200 transition duration-700">
+      {/* <Button className="items-center gap-2 bg-white py-2.5 px-8 mb-4 font-semibold border-2 rounded-full hover:bg-gray-800 hover:text-gray-200 transition duration-700">
         Add to Cart
-      </Button>
+      </Button> */}
     </div>
   );
 };
