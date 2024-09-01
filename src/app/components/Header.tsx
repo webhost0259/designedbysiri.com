@@ -138,6 +138,7 @@ const Header = () => {
                           key={index}
                           as="div"
                           className="flex items-center p-4 m-2 min-w-80 bg-gray-100 rounded-lg hover:shadow-lg transition-shadow duration-200 ease-in-out"
+                          onClick={() => window.location.href=`/categories/1/${category.name}`}
                         >
                           <div className="flex-shrink-0 w-16 h-16 relative mr-4">
                             <Image
