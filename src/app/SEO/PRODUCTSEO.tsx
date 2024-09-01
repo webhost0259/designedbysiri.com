@@ -79,7 +79,7 @@ const PRODUCTSEO: React.FC<PRODUCTSEOProps> =
             "datePublished": ${datePublished ? datePublished : ApplicationDatePublished},
             "dateModified": ${dateModified ? dateModified : ApplicationDateModified},
             "@type": "WebPage",
-            "name": "Sireesha Reddy Designer Studio",
+            "name": ${title},
             "description": ${description ? description : ApplicationDescription},
             "url": ${url ? url : ApplicationURL},
             "offers": {
