@@ -113,7 +113,7 @@ const Header = () => {
               <p className="font-semibold text-xl">Designed by Siri</p>
             </Link>
             <nav className="navbar">
-              <ul className="flex space-x-8 ml-16 ">
+              <ul className="flex space-x-8 ml-4 ">
               <Menu 
                 as="div" 
                 className="relative z-10 cursor-pointer"

@@ -4,6 +4,7 @@ import { CARTKEY, SIRICARTUPDATE } from "@/app/services/constants"
 import { Button } from "@headlessui/react"
 import Image from "next/image"
 import { useState } from "react"
+import toast from 'react-hot-toast';
 
 interface ProductDetailsProps {
   product: Product
@@ -19,14 +20,38 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
     // Get existing cart from local storage or initialize an empty array
     const cart = JSON.parse(localStorage.getItem(CARTKEY) || '[]');
 
-    // Add the product to the cart
-    cart.push(product);
+    const existingProduct = cart.find((item: Product) => item.productId === product.productId);
+    
+    if(existingProduct) {
+      cart.forEach((item: Product) => {
+        if (item.productId === product.productId) {
+          item.quantity += 1;
+        }
+      });
+    }else{
+      // Add the product to the cart
+      cart.push({
+        productId: product.productId,
+        name: product.name,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        quantity: 1
+      });
+    }
 
     // Save updated cart back to local storage
     localStorage.setItem(CARTKEY, JSON.stringify(cart));
 
+    toast.success('Added to Cart!', {
+      duration: 1300,
+      position: 'top-center',
+      style: {
+        background: '#43A047',
+        color: '#fff',
+      },
+      icon: '👏',
+    });
     // Optionally, you can also add code here to update the server with the new cart data
-
 
     setLoading(false); // Reset loading state
     // Dispatch an event to notify other components
