@@ -9,7 +9,7 @@ const CategoryPage = async ({ params: { categoryId, categoryName } }:
     const list = [1,2,3,4,5,6,7,8]            
 
     return (
-        <div className="flex flex-col tablet:flex-row min-h-screen p-2 divide-x-2">
+        <div className="flex flex-col tablet:flex-row min-h-screen p-2 divide-x-2 text-black">
             <div className="hidden tablet:block justify-start min-w-48 px-4 space-y-4">
                 <h1 className="text-md font-medium">Filter</h1>
                 <ColorFilter />

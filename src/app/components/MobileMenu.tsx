@@ -67,17 +67,17 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
               </h6>
               <ul className="pl-8 space-y-2 mt-2">
                 <li>
-                  <a href="#about" className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href="/categories/1/Sarees" className="block text-xl text-gray-700 hover:text-gray-900">
                     Sarees
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href="/categories/1/Anarkali" className="block text-xl text-gray-700 hover:text-gray-900">
                     Anarkali
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href="/categories/1/Anarkali" className="block text-xl text-gray-700 hover:text-gray-900">
                     Shararas
                   </a>
                 </li>

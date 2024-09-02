@@ -20,7 +20,7 @@ const SortOptions = ({ className }: SortOptionsProps) => {
   return (
     <div className={className}>
       <Listbox value={selected} onChange={setSelected}>
-        <div className="relative mt-1 z-50">
+        <div className="relative mt-1 z-10">
           <ListboxButton className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <span className="block truncate">{selected.name}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
