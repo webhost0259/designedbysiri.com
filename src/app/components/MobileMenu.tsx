@@ -99,8 +99,8 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="block text-xl text-gray-700 hover:text-gray-900">
-                    Custom Designs
+                  <a href={"/delivery-return-policy"} className="block text-xl text-gray-700 hover:text-gray-900">
+                    Delivery/Return
                   </a>
                 </li>
                </ul>

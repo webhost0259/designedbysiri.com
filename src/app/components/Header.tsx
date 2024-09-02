@@ -163,7 +163,7 @@ const Header = () => {
                     Stitching Connect
                   </Link>
                 </li>
-                <li><a href="#" className="hover:text-green-600 hover:font-semibold">Delivery</a></li>
+                <li><a href={"/delivery-return-policy"} className="hover:text-green-600 hover:font-semibold">Delivery/Return</a></li>
               </ul>
             </nav>
           </div>

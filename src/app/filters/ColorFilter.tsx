@@ -19,20 +19,20 @@ export default function ColorFilter() {
 
   return (
     <div className="w-64">
-      <ul className="space-y-2">
+      <ul className="flex flex-wrap tablet:flex-col space-y-2">
         {visibleColors.map((color) => (
-            <li key={color.name} className="flex items-center">
-            <input
-                type="checkbox"
-                className="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-            />
-            <span
-                className={`ml-2 block w-5 h-5 rounded-full ${color.color}`}
-            ></span>
-            <label className="ml-3 text-gray-900 flex-grow cursor-pointer">
-                {color.name}
-                {/* <span className="text-gray-400 ml-1">({color.count})</span> */}
-            </label>
+            <li key={color.name} className="flex items-center p-2 laptop:p-0">
+              <input
+                  type="checkbox"
+                  className="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              />
+              <span
+                  className={`ml-2 block w-5 h-5 rounded-full ${color.color}`}
+              ></span>
+              <label className="ml-3 text-gray-900 flex-grow cursor-pointer">
+                  {color.name}
+                  {/* <span className="text-gray-400 ml-1">({color.count})</span> */}
+              </label>
             </li>
         ))}
         </ul>

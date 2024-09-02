@@ -69,14 +69,27 @@ const CartPage = () => {
                   <div className="flex items-center space-x-2">
                     <p className="text-lg">Quantity:</p>
                     <input
-                      type="number"
+                      type="text" // Change type to "text" to allow freeform input
                       value={item.quantity}
                       onChange={(e) => {
-                        const newQuantity = parseInt(e.target.value);
-                        if (!isNaN(newQuantity)) {
+                        const newValue = e.target.value;
+                        // Convert the new value to a number and ensure it's a valid integer
+                        const newQuantity = parseInt(newValue, 10);
+                        if (!isNaN(newQuantity) && newQuantity >= 0) {
                           const updatedCart = cart.map((cartItem) => {
                             if (cartItem.productId === item.productId) {
                               return { ...cartItem, quantity: newQuantity };
+                            }
+                            return cartItem;
+                          });
+                          localStorage.setItem(CARTKEY, JSON.stringify(updatedCart));
+                          window.dispatchEvent(new Event(SIRICARTUPDATE));
+                          setCart(updatedCart);
+                        } else if (newValue === '') {
+                          // Handle the case where the input is cleared
+                          const updatedCart = cart.map((cartItem) => {
+                            if (cartItem.productId === item.productId) {
+                              return { ...cartItem, quantity: 0 }; // Default to 0 if cleared
                             }
                             return cartItem;
                           });

@@ -5,7 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8 px-16">
+    <footer className="bg-gray-800 text-white py-8 px-16 mt-16">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">
           {/* Company Info */}
