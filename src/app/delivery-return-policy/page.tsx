@@ -18,7 +18,7 @@ const DeliveryAndReturnPolicy = () => {
           <strong>Order Processing:</strong> Orders are processed within 1-2 business days. Once processed, you will receive a confirmation email with tracking information.
         </p>
         <p className="mb-2">
-          <strong>Tracking:</strong> After your order has shipped, you will receive a tracking number via email. You can track your order through our website or the carrier's website.
+          <strong>Tracking:</strong> After your order has shipped, you will receive a tracking number via email. You can track your order through our website or the carrier&apos;s website.
         </p>
         <p className="mb-2">
           <strong>Shipping Costs:</strong> Shipping costs are calculated at checkout based on the delivery method and destination. We offer free standard shipping on orders over [amount].
