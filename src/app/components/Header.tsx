@@ -158,7 +158,11 @@ const Header = () => {
                   </MenuItems>
                 </Menu>
                 <li><a href="#" className="hover:text-green-600 hover:font-semibold">Deals</a></li>
-                <li><a href="#" className="hover:text-green-600 hover:font-semibold">Whats New</a></li>
+                <li>
+                  <Link href={"/stitching-connect"} className="hover:text-green-600 hover:font-semibold">
+                    Stitching Connect
+                  </Link>
+                </li>
                 <li><a href="#" className="hover:text-green-600 hover:font-semibold">Delivery</a></li>
               </ul>
             </nav>

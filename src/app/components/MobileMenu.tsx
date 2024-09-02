@@ -89,8 +89,8 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
               </a>
               <ul className="pl-8 space-y-2 mt-2">
                 <li>
-                  <a href="#about" className="block text-xl text-gray-700 hover:text-gray-900">
-                    Stitching
+                  <a href="/stitching-connect" className="block text-xl text-gray-700 hover:text-gray-900">
+                    Stitching Connect
                   </a>
                 </li>
                 <li>
