@@ -7,7 +7,7 @@ const TermsOfService: FC = () => {
             <h1 className="text-3xl font-bold mb-4">Terms of Service</h1>
             <p><strong>Effective Date:</strong> [September, 02, 2024]</p>
 
-            <p>Welcome to Sireesha Reddy Designer Studio ("we", "us", "our"). By accessing or using our website <a href="https://designedbysiri.com" className="text-blue-500 hover:underline">designedbysiri.com</a> ("Site") or our services ("Services"), you agree to comply with and be bound by the following Terms of Service ("Terms"). Please read them carefully.</p>
+            <p>Welcome to Sireesha Reddy Designer Studio (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;). By accessing or using our website <a href="https://designedbysiri.com" className="text-blue-500 hover:underline">designedbysiri.com</a> (&quot;Site&quot;) or our services (&quot;Services&quot;), you agree to comply with and be bound by the following Terms of Service (&quot;Terms&quot;). Please read them carefully.</p>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">1. Acceptance of Terms</h2>
             <p>By using our Site or Services, you agree to these Terms. If you do not agree to these Terms, please do not use our Site or Services.</p>
@@ -34,7 +34,7 @@ const TermsOfService: FC = () => {
             <p>Your use of our Site and Services is also governed by our <a href="/privacy-policy" className="text-blue-500 hover:underline">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">7. Disclaimers</h2>
-            <p>Our Site and Services are provided on an "as-is" and "as-available" basis. We make no warranties or representations, express or implied, regarding the reliability, availability, or accuracy of our Site or Services.</p>
+            <p>Our Site and Services are provided on an &quot;as-is&quot; and &quot;as-available&quot; basis. We make no warranties or representations, express or implied, regarding the reliability, availability, or accuracy of our Site or Services.</p>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">8. Limitation of Liability</h2>
             <p>To the fullest extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from or related to your use of our Site or Services, even if we have been advised of the possibility of such damages.</p>

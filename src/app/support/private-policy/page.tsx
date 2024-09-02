@@ -33,12 +33,12 @@ const PrivacyPolicy = () => {
       
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Sharing Your Information</h2>
       <p className="text-lg text-gray-700 mb-4">
-        We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information unless we provide you with advance notice. This does not include website hosting partners and other parties who assist us in operating our website, conducting our business, or serving you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others' rights, property, or safety.
+        We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information unless we provide you with advance notice. This does not include website hosting partners and other parties who assist us in operating our website, conducting our business, or serving you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others&apos; rights, property, or safety.
       </p>
       
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Your Consent</h2>
       <p className="text-lg text-gray-700 mb-4">
-        By using our site, you consent to our website's privacy policy. If you do not agree with any terms of this privacy policy, please do not use our website or submit any personal information.
+        By using our site, you consent to our website&apos;s privacy policy. If you do not agree with any terms of this privacy policy, please do not use our website or submit any personal information.
       </p>
       
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Changes to Our Privacy Policy</h2>

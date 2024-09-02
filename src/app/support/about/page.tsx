@@ -14,11 +14,11 @@ const AboutUs = () => {
       </p>
       
       <p className="text-lg text-gray-700 mb-4">
-        Our store is not just a business; it's a reflection of our journey, our values, and our commitment to quality and style. We take pride in offering carefully selected collections that resonate with our customers' tastes and preferences.
+        Our store is not just a business; it&apos;s a reflection of our journey, our values, and our commitment to quality and style. We take pride in offering carefully selected collections that resonate with our customers&apos; tastes and preferences.
       </p>
       
       <p className="text-lg text-gray-700 mb-4">
-        You can connect with me at <a href="mailto:designerstudio.siri@gmail.com" className="text-green-600 hover:underline">designerstudio.siri@gmail.com</a> for any inquiries or to share your feedback. Don't forget to follow us on Instagram and Facebook to stay updated with our latest collections.
+        You can connect with me at <a href="mailto:designerstudio.siri@gmail.com" className="text-green-600 hover:underline">designerstudio.siri@gmail.com</a> for any inquiries or to share your feedback. Don&apos;t forget to follow us on Instagram and Facebook to stay updated with our latest collections.
       </p>
       
       <p className="text-lg text-gray-700 mb-4">
