@@ -157,13 +157,12 @@ const Header = () => {
                       )})}
                   </MenuItems>
                 </Menu>
-                <li><a href="#" className="hover:text-green-600 hover:font-semibold">Deals</a></li>
                 <li>
                   <Link href={"/stitching-connect"} className="hover:text-green-600 hover:font-semibold">
                     Stitching Connect
                   </Link>
                 </li>
-                <li><a href={"/delivery-return-policy"} className="hover:text-green-600 hover:font-semibold">Delivery/Return</a></li>
+                <li><a href={"/support/delivery-return-policy"} className="hover:text-green-600 hover:font-semibold">Delivery/Return</a></li>
               </ul>
             </nav>
           </div>

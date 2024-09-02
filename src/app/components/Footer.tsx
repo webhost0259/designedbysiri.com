@@ -13,16 +13,16 @@ const Footer: React.FC = () => {
             <h4 className="text-xl font-semibold mb-4">Company</h4>
             <ul>
               <li>
-                <Link href="/about" className="hover:underline">About Us</Link>
+                <Link href="/support/about" className="hover:underline">About Us</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:underline">Contact</Link>
+                <Link href="/support/contact" className="hover:underline">Contact</Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+                <Link href="/support/privacy-policy" className="hover:underline">Privacy Policy</Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="hover:underline">Terms of Service</Link>
+                <Link href="/support/terms-of-service" className="hover:underline">Terms of Service</Link>
               </li>
             </ul>
           </div>
@@ -32,13 +32,13 @@ const Footer: React.FC = () => {
             <h4 className="text-xl font-semibold mb-4">Customer Service</h4>
             <ul>
               <li>
-                <Link href="/shipping" className="hover:underline">Shipping Info</Link>
+                <Link href="/support/delivery-return-policy" className="hover:underline">Shipping Info</Link>
               </li>
               <li>
-                <Link href="/returns" className="hover:underline">Returns</Link>
+                <Link href="/support/delivery-return-policy" className="hover:underline">Returns</Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:underline">FAQ</Link>
+                <Link href="/support/faqs" className="hover:underline">FAQ</Link>
               </li>
             </ul>
           </div>
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
       {/* Bottom Bar */}
       <div className="bg-gray-900 text-gray-400 py-4 mt-8">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} designedbysiri.com . All rights reserved.</p>
         </div>
       </div>
     </footer>
