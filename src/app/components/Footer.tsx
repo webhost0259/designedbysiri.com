@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">
           {/* Company Info */}
-          <div className="w-full md:w-1/3 mb-6 md:mb-0">
+          <div className="w-full tablet:w-1/3 mb-6 md:mb-0">
             <h4 className="text-xl font-semibold mb-4">Company</h4>
             <ul>
               <li>
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Customer Service */}
-          <div className="w-full md:w-1/3 mb-6 md:mb-0">
+          <div className="w-full tablet:w-1/3 mb-6 tablet:mb-0">
             <h4 className="text-xl font-semibold mb-4">Customer Service</h4>
             <ul>
               <li>
@@ -42,38 +42,21 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-
-          {/* Newsletter Signup */}
-          <div className="w-full md:w-1/3 mb-6 md:mb-0">
-            <h4 className="text-xl font-semibold mb-4">Subscribe to Our Newsletter</h4>
-            <form className="flex flex-col">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 mb-4 text-gray-800 rounded"
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
-              >
-                Subscribe
-              </button>
-            </form>
+          <div className="w-full tablet:w-1/3 mb-6 md:mb-0">
+            <h4 className="text-xl font-semibold mb-4">Follow Us</h4>
+            <div className="flex space-x-4 text-white">
+              <a href="https://www.facebook.com/profile.php?id=61561066942013" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
+                <FaFacebookSquare  className='text-blue-600' size={36}/>
+              </a>
+              <a href="https://www.instagram.com/sireeshareddy_designer_studio/" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500">
+                <FaInstagram className='text-green-600' size={36}/>
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Social Media Links */}
-        <div className="mt-8 text-center">
-          <h4 className="text-xl font-semibold mb-4">Follow Us</h4>
-          <div className="flex justify-center space-x-4 text-white">
-            <a href="https://www.facebook.com/profile.php?id=61561066942013" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
-              <FaFacebookSquare  className='text-blue-600' size={36}/>
-            </a>
-            <a href="https://www.instagram.com/sireeshareddy_designer_studio/" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500">
-              <FaInstagram className='text-green-600' size={36}/>
-            </a>
-          </div>
-        </div>
+        
       </div>
 
       {/* Bottom Bar */}

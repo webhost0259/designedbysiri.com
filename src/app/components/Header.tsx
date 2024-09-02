@@ -1,6 +1,6 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Menu, MenuButton, MenuItems, MenuItem , Transition} from '@headlessui/react';
 import Image from 'next/image';
 import SearchBar from './SearchBar';
 import { CgProfile } from "react-icons/cg";
@@ -169,9 +169,73 @@ const Header = () => {
           </div>
           <SearchBar onSearch={handleSearch} placeholder="Search Products"/>
           <div className="flex flex-row account-cart space-x-8">
-            <div className='flex flex-row items-center'>
-              <CgProfile className='mr-2'/>
-              <a href="#" className="transition-all duration-200 hover:text-green-600 hover:font-semibold">Account</a>
+            <div className="flex flex-row items-center">
+              <CgProfile className="mr-2" />
+              <Menu as="div" className="relative">
+                <MenuButton className="transition-all duration-200 hover:text-green-600 hover:font-semibold">
+                  Account
+                </MenuButton>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <MenuItems className="absolute left-[-64px] mt-2 w-48 origin-top-right bg-white border border-gray-200 rounded-md shadow-lg outline-none">
+                    <MenuItem>
+                      {({ active }) => (
+                        <a
+                          href="#profile"
+                          className={`${
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                          } block px-4 py-2 text-sm`}
+                        >
+                          Profile
+                        </a>
+                      )}
+                    </MenuItem>
+                    <MenuItem>
+                      {({ active }) => (
+                        <a
+                          href="#wishlist"
+                          className={`${
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                          } block px-4 py-2 text-sm`}
+                        >
+                          Orders
+                        </a>
+                      )}
+                    </MenuItem>
+                    <MenuItem>
+                      {({ active }) => (
+                        <a
+                          href="#wishlist"
+                          className={`${
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                          } block px-4 py-2 text-sm`}
+                        >
+                          Wishlist
+                        </a>
+                      )}
+                    </MenuItem>
+                    <MenuItem>
+                      {({ active }) => (
+                        <a
+                          href="#logout"
+                          className={`${
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                          } block px-4 py-2 text-sm`}
+                        >
+                          Logout
+                        </a>
+                      )}
+                    </MenuItem>
+                  </MenuItems>
+                </Transition>
+              </Menu>
             </div>
             <div className='flex flex-row items-center'>
               <HiOutlineShoppingCart className='mr-2'/>

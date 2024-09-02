@@ -1,6 +1,13 @@
 'use client'
 import { use, useEffect, useState } from 'react';
 import { CgProfile } from 'react-icons/cg';
+import { FaHome } from "react-icons/fa";
+import { MdCategory } from "react-icons/md";
+import { MdDesignServices } from "react-icons/md";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { FiPhoneCall } from "react-icons/fi";
+import { MdOutlineLogout } from "react-icons/md";
+
 
 interface MobileMenuProps {
     openMenu: boolean;
@@ -25,7 +32,7 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300 ease-in-out z-50`}
       >
-        <div className='flex flex-row space-x-6 items-center h-16 bg-[#D2B48C]'>
+        <div className='flex flex-row space-x-6 items-center h-16 bg-[#f6e2c7]'>
             <CgProfile className='mx-2' size={36}/>
             <a 
                 href="#" 
@@ -57,57 +64,84 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
         <nav className="p-4">
           <ul className="space-y-4 pl-8">
             <li>
-              <a href="/" className="block text-2xl text-gray-700 hover:text-gray-900">
-                Home
+              <a href="/" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
+              <FaHome className='text-green-600' /> <span className='ml-2'>Home</span> 
               </a>
             </li>
             <li>
-              <h6 className="block text-2xl text-gray-700 hover:text-gray-900">
-                Categories
+              <h6 className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
+                <MdCategory className='text-blue-600 mr-2'/> Categories
               </h6>
               <ul className="pl-8 space-y-2 mt-2">
                 <li>
-                  <a href="/categories/1/Sarees" className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href="/categories/1/Sarees" className="flex flex-row items-center text-lg text-gray-700 hover:text-gray-900">
                     Sarees
                   </a>
                 </li>
                 <li>
-                  <a href="/categories/1/Anarkali" className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href="/categories/1/Anarkali" className="flex flex-row items-center text-lg text-gray-700 hover:text-gray-900">
                     Anarkali
                   </a>
                 </li>
                 <li>
-                  <a href="/categories/1/Anarkali" className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href="/categories/1/Anarkali" className="flex flex-row items-center text-lg text-gray-700 hover:text-gray-900">
                     Shararas
                   </a>
                 </li>
                </ul>
             </li>
             <li>
-              <a href="#services" className="block text-2xl text-gray-700 hover:text-gray-900">
-                Services
+              <a href="#services" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
+                <MdDesignServices className='text-yellow-600 mr-2'/> Services
               </a>
               <ul className="pl-8 space-y-2 mt-2">
                 <li>
-                  <a href="/stitching-connect" className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href="/stitching-connect" className="block text-lg text-gray-700 hover:text-gray-900">
                     Stitching Connect
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href="#about" className="block text-lg text-gray-700 hover:text-gray-900">
                     Alteration
                   </a>
                 </li>
                 <li>
-                  <a href={"/delivery-return-policy"} className="block text-xl text-gray-700 hover:text-gray-900">
+                  <a href={"/delivery-return-policy"} className="block text-lg text-gray-700 hover:text-gray-900">
                     Delivery/Return
                   </a>
                 </li>
                </ul>
             </li>
             <li>
-              <a href="#contact" className="block text-2xl text-gray-700 hover:text-gray-900">
-                Contact
+              <a href="#services" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
+              <MdOutlineAccountCircle className='text-gray-600 mr-2'/> Account
+              </a>
+              <ul className="pl-8 space-y-2 mt-2">
+                <li>
+                  <a href="/stitching-connect" className="block text-lg text-gray-700 hover:text-gray-900">
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="#about" className="block text-lg text-gray-700 hover:text-gray-900">
+                    Orders
+                  </a>
+                </li>
+                <li>
+                  <a href={"/delivery-return-policy"} className="block text-lg text-gray-700 hover:text-gray-900">
+                    wishlist
+                  </a>
+                </li>
+               </ul>
+            </li>
+            <li className='pt-16'>
+              <a href="#contact" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
+               <FiPhoneCall className='text-pink-700 mr-2'/> Contact Us
+              </a>
+            </li>
+            <li className='pt-4'>
+              <a href="#contact" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
+                <MdOutlineLogout className='text-black mr-2'/> Log Out
               </a>
             </li>
           </ul>
