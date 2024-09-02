@@ -22,7 +22,7 @@ const CategoryPage = async ({ params: { categoryId, categoryName } }:
                 <div className="flex flex-wrap justify-stretch mt-8">
                     {
                         list.map((item, index) => {
-                            return <CategoryProductCard key={index}/>
+                            return <CategoryProductCard key={index} />
                         })  
                     }
                 </div>

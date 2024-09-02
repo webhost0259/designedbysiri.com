@@ -4,6 +4,7 @@ import { Dialog } from '@headlessui/react';
 import Image from 'next/image';
 import { HiOutlineXCircle } from "react-icons/hi";
 import { SIRICARTUPDATE } from '../services/constants';
+import Link from 'next/link';
 
 const CARTKEY = 'siri-cart';
 
@@ -50,18 +51,43 @@ const CartPage = () => {
           <div className='flex flex-col w-full space-y-4'>
             {cart.map(item => (
               <div key={item.productId} className="flex w-full items-center space-x-4 p-4 border border-gray-300 rounded-lg">
-                <div className="relative w-24 h-24 flex-shrink-0">
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.name}
-                    fill={true}
-                    className="rounded-lg object-cover"
-                  />
-                </div>
+                <Link href={`/products/${item.productId}`}>
+                  <div className="relative w-24 h-24 flex-shrink-0">
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.name}
+                      fill={true}
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
+                </Link>
                 <div className="flex-grow">
-                  <h2 className="text-xl font-semibold">{item.name}</h2>
+                  <Link href={`/products/${item.productId}`}>
+                    <h2 className="text-xl font-semibold">{item.name}</h2>
+                  </Link>
                   <p className="text-lg">Price: Rs.{item.price.toFixed(2)}</p>
-                  <p className="text-lg">Quantity: {item.quantity}</p>
+                  <div className="flex items-center space-x-2">
+                    <p className="text-lg">Quantity:</p>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      onChange={(e) => {
+                        const newQuantity = parseInt(e.target.value);
+                        if (!isNaN(newQuantity)) {
+                          const updatedCart = cart.map((cartItem) => {
+                            if (cartItem.productId === item.productId) {
+                              return { ...cartItem, quantity: newQuantity };
+                            }
+                            return cartItem;
+                          });
+                          localStorage.setItem(CARTKEY, JSON.stringify(updatedCart));
+                          window.dispatchEvent(new Event(SIRICARTUPDATE));
+                          setCart(updatedCart);
+                        }
+                      }}
+                      className="w-16 px-2 py-1 border border-gray-300 rounded-md"
+                    />
+                  </div>
                 </div>
                 <button 
                   className="text-red-500 hover:text-red-700 flex-shrink-0"
@@ -84,23 +110,7 @@ const CartPage = () => {
           </div>
         </div>
       )}
-
-      {/* Checkout Modal */}
-      <Dialog open={isCheckoutOpen} onClose={() => setIsCheckoutOpen(false)}>
-        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          <Dialog.Panel className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-            <Dialog.Title className="text-2xl font-bold mb-4">Checkout</Dialog.Title>
-            <p className="text-lg mb-4">Thank you for your purchase! We are processing your order and will send you a confirmation email soon.</p>
-            <button 
-              className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg hover:bg-blue-700"
-              onClick={() => setIsCheckoutOpen(false)}
-            >
-              Close
-            </button>
-          </Dialog.Panel>
-        </div>
-      </Dialog>
+      
       <div className='flex flex-col space-y-6 justify-end items-end mt-8'>
         <div className='flex flex-row justify-between space-x-4 max-w-80'>
           <h6 className="text-md">Subtotal:</h6>
