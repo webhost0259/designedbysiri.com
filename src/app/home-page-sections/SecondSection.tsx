@@ -22,14 +22,6 @@ const SecondSection = () => {
             <p className="text-sm mb-8 text-wrap">
               Handpicked collections of Indian traditional attire.
             </p>
-            <div>
-              <a
-                href="#"
-                className="px-6 py-3 bg-green-600 rounded-lg text-white font-semibold hover:bg-green-700"
-              >
-                Shop Now
-              </a>
-            </div>
             <div className="max-w-96 tablet:max-w-[640px] laptop:min-w-[1024px] overflow-x-auto">
               <div className="flex flex-nowrap space-x-4 mt-6">
                 {products.map((product, index) => (
