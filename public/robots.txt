@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://designedbysiri.com
+
+# Sitemaps
+Sitemap: https://designedbysiri.com/sitemap.xml
