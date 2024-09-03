@@ -35,7 +35,7 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
         <div className='flex flex-row space-x-6 items-center h-16 bg-[#f6e2c7]'>
             <CgProfile className='mx-2' size={36}/>
             <a 
-                href="#" 
+                href="/users/signin" 
                 className="text-xl transition-all duration-200 hover:text-green-600 hover:font-semibold"
             >
                 Hello, User
@@ -101,11 +101,6 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="block text-lg text-gray-700 hover:text-gray-900">
-                    Alteration
-                  </a>
-                </li>
-                <li>
                   <a href={"/delivery-return-policy"} className="block text-lg text-gray-700 hover:text-gray-900">
                     Delivery/Return
                   </a>
@@ -114,7 +109,7 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
             </li>
             <li>
               <a href="#services" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
-              <MdOutlineAccountCircle className='text-gray-600 mr-2'/> Account
+                <MdOutlineAccountCircle className='text-gray-600 mr-2'/> Account
               </a>
               <ul className="pl-8 space-y-2 mt-2">
                 <li>
@@ -134,12 +129,12 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
                 </li>
                </ul>
             </li>
-            <li className='pt-16'>
+            <li>
               <a href="#contact" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
                <FiPhoneCall className='text-pink-700 mr-2'/> Contact Us
               </a>
             </li>
-            <li className='pt-4'>
+            <li className='pt-2'>
               <a href="#contact" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
                 <MdOutlineLogout className='text-black mr-2'/> Log Out
               </a>

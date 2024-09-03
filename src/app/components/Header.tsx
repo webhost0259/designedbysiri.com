@@ -183,6 +183,19 @@ const Header = () => {
                   leaveTo="transform opacity-0 scale-95"
                 >
                   <MenuItems className="absolute left-[-64px] mt-2 w-48 origin-top-right bg-white border border-gray-200 z-30 rounded-md shadow-lg outline-none">
+                  <MenuItem>
+                      {({ active }) => (
+                        <a
+                          href="/users/signin"
+                          className={`${
+                            active ? 'bg-gray-100 text-green-600' : 'text-green-700'
+                          } block px-4 py-2 text-sm`}
+                        >
+                          SIGNIN/SIGNUP
+                        </a>
+                      )}
+                    </MenuItem>
+                    <hr></hr>
                     <MenuItem>
                       {({ active }) => (
                         <a
