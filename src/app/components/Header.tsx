@@ -58,7 +58,6 @@ const Header = () => {
     };
   }, []);
 
-  console.log('Header Rendered isOpen :', isOpen);
   return (
     <header className="py-2 bg-white text-gray-700 font-medium border-b-2 shadow-sm shadow-cyan-500/50">
       {/* Code Only for Mobiles ---------------------------------------- */}
@@ -183,7 +182,7 @@ const Header = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <MenuItems className="absolute left-[-64px] mt-2 w-48 origin-top-right bg-white border border-gray-200 rounded-md shadow-lg outline-none">
+                  <MenuItems className="absolute left-[-64px] mt-2 w-48 origin-top-right bg-white border border-gray-200 z-30 rounded-md shadow-lg outline-none">
                     <MenuItem>
                       {({ active }) => (
                         <a
