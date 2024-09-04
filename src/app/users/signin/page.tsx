@@ -3,6 +3,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import Head from 'next/head';
 import { signin } from '@/app/services/apis/api';
 import { useState } from 'react';
+import Cookies from 'js-cookie';
+import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 export interface SignInFormInputs {
   emailOrPhone: string;
@@ -19,17 +22,41 @@ const SignIn = () => {
     setLoading(true);
     try {
       const res = await signin(data);
-      console.log("res : ", res);
+      console.log("res: ", res);
+      setLoading(false);
+      Cookies.set('token', res.token, { secure: true, sameSite: 'strict' });
+      Cookies.set('customerId', res.customer.customerId, { secure: true, sameSite: 'strict' });
+      Cookies.set('firstName', res.customer.firstName, { secure: true, sameSite: 'strict' });
+      Cookies.set('lastName', res.customer.lastName, { secure: true, sameSite: 'strict' });
       window.location.href = '/';
     } catch (error) {
-      console.error("Sign-in error: ", error);
+      // Capture the error message
+      let errorMessage = 'An unexpected error occurred';
+      
+      // Check if the error has a response (common in HTTP errors)
+      if ((error as any).response) {
+        // Extract the message from the response data
+        errorMessage = (error as any).response.data?.message || (error as any).response.statusText || errorMessage;
+      } else if ((error as any).message) {
+        // Fallback to a generic error message
+        errorMessage = (error as any).message;
+      }
+    
+      toast.error(errorMessage, {
+        duration: 3000,
+        position: 'top-center',
+        style: {
+          background: 'red',
+          color: '#fff',
+        },
+      });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <Head>
         <title>Sign In - Sireesha Reddy Designer Studio</title>
       </Head>
@@ -89,25 +116,9 @@ const SignIn = () => {
             className="flex flex-row justify-center items-center space-x-4 w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             {loading && (
-              <svg
-                className="animate-spin h-5 w-5 text-white mr-3"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"
-                ></path>
+              <svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="4"></circle>
+                <path  fill="white" d="M4 12a8 8 0 018-8v8z"></path>
               </svg>
             )}
             <span>Sign In</span>

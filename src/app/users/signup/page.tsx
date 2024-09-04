@@ -24,6 +24,7 @@ const SignUp = () => {
     setLoading(true);
     try {
       const res = await createCustomer(data);
+      Cookies.set('token', res.data.token, { secure: true, sameSite: 'strict' });
       console.log("res : ", res);
     } catch (error) {
       console.error("Sign-in error: ", error);
@@ -136,25 +137,9 @@ const SignUp = () => {
             className="flex flex-row justify-center items-center space-x-4 w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             {loading && (
-              <svg
-                className="animate-spin h-5 w-5 text-white mr-3"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"
-                ></path>
+              <svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="white" d="M4 12a8 8 0 018-8v8z"></path>
               </svg>
             )}
             <span>Sign Up</span>

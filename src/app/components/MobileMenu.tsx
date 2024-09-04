@@ -7,7 +7,7 @@ import { MdDesignServices } from "react-icons/md";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineLogout } from "react-icons/md";
-
+import Cookies from 'js-cookie';
 
 interface MobileMenuProps {
     openMenu: boolean;
@@ -15,9 +15,13 @@ interface MobileMenuProps {
 }
 export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(openMenu);
+  const [customerId, setCustomerId] = useState<string | undefined>();
+  const [firstName, setFirstName] = useState<string | undefined>();
+  const [lastName, setLastName] = useState<string | undefined>();
 
   useEffect(() => {
     setIsOpen(openMenu);
+    const token = Cookies.get('token');
   }, [openMenu]);
 
   const onClick = () => {

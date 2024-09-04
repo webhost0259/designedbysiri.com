@@ -11,15 +11,6 @@ export const createCustomer = async (creadVaultUser: SignUpFormInputs) : Promise
   const url = `ecommerce/${orgId}/customer`;
   try {
     const response = await handlePost(url, creadVaultUser);
-    console.log(response);
-    Cookies.set(
-      'token', 
-      response.data.token, 
-      { 
-        secure: true, 
-        sameSite: 'strict' 
-      }
-    );
     return response;
   } catch (error) {
     console.error('API Error:', error);
@@ -36,7 +27,6 @@ export const signin = async (creadVaultUser: SignInFormInputs) : Promise<any> =>
       password: creadVaultUser.password
     }
     const response = await handlePost(url, signIn);
-    Cookies.set('token', response.data.token, { secure: true, sameSite: 'strict' });
     return response;
   } catch (error) {
     console.error('API Error:', error);
