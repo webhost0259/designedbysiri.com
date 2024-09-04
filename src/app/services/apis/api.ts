@@ -1,52 +1,50 @@
 // lib/api.ts
 
-export const fetcher = async (url: string) => {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('An error occurred while fetching the data.');
-    }
-    return response.json();
-  };
+import { SignUpFormInputs } from "@/app/users/signup/page";
+import { handlePost } from "./handleApi";
+import Cookies from 'js-cookie';
+import { SignInFormInputs } from "@/app/users/signin/page";
 
-  // lib/api.ts
+const orgId = 429054743;
 
-// Example for updating data
-export const updateData = async (url: string, data: any) => {
-    const response = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      throw new Error('An error occurred while updating the data.');
+export const createCustomer = async (creadVaultUser: SignUpFormInputs) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customer`;
+  try {
+    const response = await handlePost(url, creadVaultUser);
+    console.log(response);
+    Cookies.set(
+      'token', 
+      response.data.token, 
+      { 
+        secure: true, 
+        sameSite: 'strict' 
+      }
+    );
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+};
+
+export const signin = async (creadVaultUser: SignInFormInputs) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/login`;
+  try {
+    const signIn = {
+      email: creadVaultUser.emailOrPhone,
+      phone: creadVaultUser.emailOrPhone,
+      password: creadVaultUser.password
     }
-    return response.json();
-  };
-  
-  // Example for creating new data
-  export const createData = async (url: string, data: any) => {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      throw new Error('An error occurred while creating the data.');
-    }
-    return response.json();
-  };
-  
-  // Example for deleting data
-  export const deleteData = async (url: string) => {
-    const response = await fetch(url, {
-      method: 'DELETE',
-    });
-    if (!response.ok) {
-      throw new Error('An error occurred while deleting the data.');
-    }
-    return response.json();
-  };
+    const response = await handlePost(url, signIn);
+    Cookies.set('token', response.data.token, { secure: true, sameSite: 'strict' });
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+};
+
+export const signout = async () : Promise<void> => {
+  Cookies.remove('token');
+  window.location.href = '/';
+};
