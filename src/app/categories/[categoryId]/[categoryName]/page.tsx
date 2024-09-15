@@ -3,13 +3,14 @@ import CategoryProductCard from "./CategoryProductCard";
 import ColorFilter from "@/app/filters/ColorFilter";
 import PriceFilter from "@/app/filters/PriceFilter";
 import Filter from "@/app/filters/Filter";
+import { getCategoryTypeProducts } from "@/app/services/apis/api";
+import { CategoryTypeProduct } from "@/app/services/apis/models";
 
 
 const CategoryPage = async ({ params: { categoryId, categoryName } }: 
-            { params: { categoryId: string, categoryName: string } }) => {
-
-    const list = [1,2,3,4,5,6,7,8]            
+            { params: { categoryId: number, categoryName: string } }) => {
     
+    const products: Array<CategoryTypeProduct> = await getCategoryTypeProducts(categoryId);
     
     return (
         <div className="flex flex-col tablet:flex-row min-h-screen p-2 divide-x-2 text-black">
@@ -30,8 +31,8 @@ const CategoryPage = async ({ params: { categoryId, categoryName } }:
                 </div>
                 <div className="flex flex-wrap justify-stretch mt-8">
                     {
-                        list.map((item, index) => {
-                            return <CategoryProductCard key={index} />
+                        products.map((product, index) => {
+                            return <CategoryProductCard key={index} product={product}/>
                         })  
                     }
                 </div>

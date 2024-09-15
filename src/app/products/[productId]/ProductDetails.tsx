@@ -1,5 +1,5 @@
 'use client'
-import { Product } from "@/app/components/ProductBrief"
+import { Product } from "@/app/services/apis/models"
 import { CARTKEY, SIRICARTUPDATE } from "@/app/services/constants"
 import { Button } from "@headlessui/react"
 import Image from "next/image"
@@ -32,8 +32,8 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
       // Add the product to the cart
       cart.push({
         productId: product.productId,
-        name: product.name,
-        imageUrl: product.imageUrl,
+        name: product.productName,
+        imageUrl: product.imagePaths[0],
         price: product.price,
         quantity: 1
       });
@@ -62,19 +62,20 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
       <div className="flex flex-col w-full justify-center items-center px-2 laptop:flex-row  text-black laptop:space-x-16 laptop:ml-16">
         <div className="relative rounded-lg w-full h-96 tablet:w-96 laptop:w-96 laptop:h-[512px] border-2 border-gray-400 laptop:p-4">
           <Image 
-            src={product.imageUrl} 
+            src={product.imagePaths[0]} 
             alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" 
             fill={true}
             className="object-cover transition-transform duration-700 transform hover:scale-105 p-4"
+            unoptimized
           />
         </div>
         <div className="flex flex-col space-y-4 w-full px-4 laptop:max-w-[512px]">
           <p className="text-lg font-semibold">Product ID: #{product.productId}</p>
-          <h6 className="font-medium text-3xl text-gray-700">{product.name}</h6>
-          <p className="border-b-2 w-full pb-4">{product.description}</p>
-          <p className="text-2xl font-semibold">Rs.{product.price.toFixed(2)}</p>
+          <h6 className="font-medium text-3xl text-gray-700">{product.productName}</h6>
+          <p className="border-b-2 w-full pb-4">{product.productDescription}</p>
+          {/* <p className="text-2xl font-semibold">Rs.{product.price?.toFixed(2)}</p> */}
           <p className="text-lg font-semibold">In Stock: {product.quantity}</p>
-          <p className="text-lg font-semibold">SKU: {product.sku}</p>
+          {/* <p className="text-lg font-semibold">SKU: {product.sku}</p> */}
           <p className="text-lg font-semibold">Status: {product.status ? 'Available' : 'Out of Stock'}</p>
           <div className="flex flex-row space-x-4 w-full">
             <Button 

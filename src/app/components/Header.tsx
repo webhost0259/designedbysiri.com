@@ -11,6 +11,8 @@ import useCart from '../services/hooks/useCart';
 import { CARTKEY, SIRICARTUPDATE } from '../services/constants';
 import { RxHamburgerMenu } from "react-icons/rx";
 import MobileMenu from './MobileMenu';
+import { getAllCategoryTypes } from '../services/apis/api';
+import { CategoryType } from '../services/apis/models';
 
 const logoPath = '/logo.png';
 const Header = () => {
@@ -18,6 +20,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [cartCount, setCartCount] = useState<number>(0);
   const [openMenu, setOpenMenu] = useState(false);
+  const [categoryTypes, setCategoryTypes] = useState<{ name: string; image: string; id: number }[]>([]);
   
   const toggleMenu = (close: boolean) => {
     setOpenMenu(close);
@@ -29,22 +32,37 @@ const Header = () => {
     // You might want to redirect to a search results page or filter data
   };
 
-  const categories = [
-    { name: 'Botique', image: '/category-icons/botique-icon.jpg', items: 240 },
-    { name: 'Women', image: '/category-icons/women-icon.jpg', items: 240 },
-    { name: 'Men', image: '/category-icons/men-icon.jpeg', items: 240 },
-    { name: 'Girl', image: '/category-icons/girl-icon.jpeg', items: 240 },
-    { name: 'Boy', image: '/category-icons/boy-icon.jpeg', items: 240 },
-    { name: 'Sarees', image: '/category-icons/saree-icon.jpeg', items: 240 },
-    { name: 'Anarkali', image: '/category-icons/anarkali-icon.jpeg', items: 240 },
-    { name: 'Shararas', image: '/category-icons/anarkali-icon.jpeg', items: 240 },
-  ];
+  // const categories = [
+  //   { name: 'Botique', image: '/category-icons/botique-icon.jpg', items: 240 },
+  //   { name: 'Women', image: '/category-icons/women-icon.jpg', items: 240 },
+  //   { name: 'Men', image: '/category-icons/men-icon.jpeg', items: 240 },
+  //   { name: 'Girl', image: '/category-icons/girl-icon.jpeg', items: 240 },
+  //   { name: 'Boy', image: '/category-icons/boy-icon.jpeg', items: 240 },
+  //   { name: 'Sarees', image: '/category-icons/saree-icon.jpeg', items: 240 },
+  //   { name: 'Anarkali', image: '/category-icons/anarkali-icon.jpeg', items: 240 },
+  //   { name: 'Shararas', image: '/category-icons/anarkali-icon.jpeg', items: 240 },
+  // ];
 
   useEffect(() => {
     const updateCartCount = () => {
       const cart = JSON.parse(localStorage.getItem(CARTKEY) || '[]');
       setCartCount(cart.length);
     };
+
+    getAllCategoryTypes().then((response) => {
+      console.log('Categories:', response);
+      const categories: { name: string; image: string; id: number }[] = [];
+      if(response){
+        response.map((item: CategoryType) => {
+          categories.push({ 
+            name: item.categoryTypeName, 
+            image: '/category-icons/botique-icon.jpg', 
+            id: item.categoryTypeId
+          });
+        });
+        setCategoryTypes(categories);
+      }
+    });
 
     // Initialize cart count
     updateCartCount();
@@ -131,13 +149,13 @@ const Header = () => {
                                bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 p-4`}
                     onClick={() => setIsOpen(false)}
                     >
-                    {categories.map((category, index) => {
+                    {categoryTypes.map((category, index) => {
                       return(
                         <MenuItem
                           key={index}
                           as="div"
                           className="flex items-center p-4 m-2 min-w-80 bg-gray-100 rounded-lg hover:shadow-lg transition-shadow duration-200 ease-in-out"
-                          onClick={() => window.location.href=`/categories/1/${category.name}`}
+                          onClick={() => window.location.href=`/categories/${category.id}/${category.name}`}
                         >
                           <div className="flex-shrink-0 w-16 h-16 relative mr-4">
                             <Image
@@ -149,8 +167,8 @@ const Header = () => {
                             />
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold">{category.name}</h3>
-                            <p className="text-sm text-gray-600">{category.items} Item Available</p>
+                            <h3 className="text-md font-semibold">{category.name}</h3>
+                            {/* <p className="text-sm text-gray-600">{category.items} Item Available</p> */}
                           </div>
                         </MenuItem>
                       )})}

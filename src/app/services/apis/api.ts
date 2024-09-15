@@ -1,11 +1,12 @@
 // lib/api.ts
 
 import { SignUpFormInputs } from "@/app/users/signup/page";
-import { handlePost } from "./handleApi";
+import { handleGet, handlePost } from "./handleApi";
 import Cookies from 'js-cookie';
 import { SignInFormInputs } from "@/app/users/signin/page";
+import { CategoryType, CategoryTypeProduct, Product } from "./models";
 
-const orgId = 429054743;
+const orgId = 970017453;
 
 export const createCustomer = async (creadVaultUser: SignUpFormInputs) : Promise<any> => {
   const url = `ecommerce/${orgId}/customer`;
@@ -38,3 +39,41 @@ export const signout = async () : Promise<void> => {
   Cookies.remove('token');
   window.location.href = '/';
 };
+
+// ----------------------CategoryTypes----------------------------------
+
+export const getAllCategoryTypes = async () : Promise<Array<CategoryType>> => { 
+  const url = `ecommerce/${orgId}/category-types`;
+  try {
+    const response = await handleGet(url);
+    return response.data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+// -----------------------------Products---------------------------
+
+export const getCategoryTypeProducts = async (categoryTypeId: number) : Promise<Array<CategoryTypeProduct>> => {
+  const url = `ecommerce/${orgId}/category-types/${categoryTypeId}/products`;
+  try {
+    const response = await handleGet(url);
+    return response.data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const getProduct = async (productId: string) : Promise<Product> => {
+  const url = `ecommerce/${orgId}/products/${productId}`;
+  try {
+    const response = await handleGet(url);
+    return response.data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+

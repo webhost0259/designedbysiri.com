@@ -25,3 +25,39 @@ export interface Address{
     zip: string,
     country: string
 }
+
+export interface CategoryType{
+    categoryTypeId: number,
+    categoryTypeName: string,
+    orgId: number
+}
+
+export interface CategoryTypeProduct{
+    productId: number,
+    productName: string,
+    productDescription: string,
+    price: number,
+    quantity: number,
+    categoryName: string,
+    categoryTypeName: string,
+    imagePath: string
+}
+
+export interface Product{
+    productId: number,
+    productName: string,
+    productDescription: string,
+    price: number,
+    quantity: number,
+    status: boolean,
+    imagePaths: Array<string>,
+    gender: string,
+    ageGroup: string,
+    brandId: number,
+    style: string,
+    pattern: string,
+    occasion: string,
+    season: string,
+    fit: string,
+    careInstructions: string
+}

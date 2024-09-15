@@ -1,3 +1,5 @@
+import { Product } from "../services/apis/models";
+
 export const ApplicationTitle = 'Sireesha Reddy Designer Studio, Buy Indian Traditional Attire Online, Designed by Siri';
 export const ApplicationDescription = `Sireesha Reddy Designer Studio, Buy Indian Traditional Attire Online, Designed by Siri. Free shipping across India.
                                       Wedding materials, stitched and unstitched materials, sarees, salwar kameez, kurtis, lehengas, anarkali suits, dupattas, shararas, and more.`
@@ -34,26 +36,40 @@ export const ApplicationMSApplicationTileColor = '#ffffff';
 export const ApplicationMSApplicationTileImage = '/mstile-150x150.png';
 
 
-export const generateProductSEOObject = (product: any) => {
+export const generateProductSEOObject = async (product: Product) => {
+
+  const keywords = [
+    "women's lehanga",
+    "bridal lehanga",
+    "designer lehanga",
+    "wedding lehanga",
+    "heavy embroidery lehanga",
+    "festive lehanga",
+    "ethnic wear for women",
+    "lehanga choli",
+    "bridal wear",
+    "Sireesha Reddy Designer Studio"
+  ]
+  
   return {
-    title: product.name,
-    description: product.description,
-    image: product.imageUrl,
-    url: product.url,
-    datePublished: product?.datePublished,
-    dateModified: product?.dateModified,
-    keywords: product?.keywords,
-    type: product?.type,
+    title: product.productName,
+    description: product.productDescription + keywords.join(', '),
+    image: product.imagePaths[0],
+    url: `https://designedbysiri.com/products/${product.productId}`,
+    datePublished: "2024-08-08",
+    dateModified: "2024-08-08",
+    keywords: keywords.join(', '),
+    type: product?.pattern,
     price: product?.price,
-    currency: product?.currency,
+    currency: "INR",
     availability: product?.status ? 'In Stock' : 'Out of Stock',
-    condition: product?.condition,
-    brand: product?.brand,
-    manufacturer: product?.manufacturer,
-    model: product?.model,
-    sku: product?.sku,
-    gtin8: product?.gtin8,
-    gtin13: product?.gtin13,
+    condition: "New",
+    brand: product?.brandId,
+    manufacturer: "Sireesha Reddy Designer Studio",
+    model: product?.pattern,
+    sku: product?.productId,
+    gtin8: product?.productId,
+    gtin13: product?.productId
   }
 }
 

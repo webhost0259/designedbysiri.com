@@ -14,9 +14,9 @@ interface ProductSEOProps {
   brand: string;
   manufacturer: string;
   model: string;
-  sku: string;
-  gtin8: string;
-  gtin13: string;
+  sku?: string;
+  gtin8?: string;
+  gtin13?: string;
   canonical: string;
   datePublished: string;
   dateModified: string;
