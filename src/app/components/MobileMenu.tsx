@@ -8,12 +8,14 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineLogout } from "react-icons/md";
 import Cookies from 'js-cookie';
+import { MenuCategoryType } from './Header';
 
 interface MobileMenuProps {
     openMenu: boolean;
     toggleMenu: (close: boolean) => void;
+    categoryTypes: Array<MenuCategoryType>;
 }
-export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
+export default function MobileMenu({openMenu, toggleMenu, categoryTypes} : MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(openMenu);
   const [customerId, setCustomerId] = useState<string | undefined>();
   const [firstName, setFirstName] = useState<string | undefined>();
@@ -77,21 +79,17 @@ export default function MobileMenu({openMenu, toggleMenu} : MobileMenuProps) {
                 <MdCategory className='text-blue-600 mr-2'/> Categories
               </h6>
               <ul className="pl-8 space-y-2 mt-2">
-                <li>
-                  <a href="/categories/1/Sarees" className="flex flex-row items-center text-lg text-gray-700 hover:text-gray-900">
-                    Sarees
-                  </a>
-                </li>
-                <li>
-                  <a href="/categories/1/Anarkali" className="flex flex-row items-center text-lg text-gray-700 hover:text-gray-900">
-                    Anarkali
-                  </a>
-                </li>
-                <li>
-                  <a href="/categories/1/Anarkali" className="flex flex-row items-center text-lg text-gray-700 hover:text-gray-900">
-                    Shararas
-                  </a>
-                </li>
+                {
+                  categoryTypes.map((category: MenuCategoryType, index: number) => {
+                    return (
+                      <li key={index}>
+                        <a href={`/categories/${category.id}/${category.name}`} className="flex flex-row items-center text-md text-gray-700 hover:text-gray-900">
+                          {category.name}
+                        </a>
+                      </li>
+                    )
+                  })
+                }
                </ul>
             </li>
             <li>

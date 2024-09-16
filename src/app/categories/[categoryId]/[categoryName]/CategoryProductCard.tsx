@@ -10,13 +10,14 @@ interface CategoryProductCardProps {
 const CategoryProductCard = ({product}: CategoryProductCardProps) => {
 
     const url = `/products/${product.productId}`;
+    const imageUrl = product.imagePath ? product.imagePath : '/logo.png'; // Fallback image
 
     return (
         <div className="w-1/2 max-w-48 flex flex-col  rounded-md p-2">
             <Link href={url}>
                 <div className="relative w-full h-[176px] bg-gray-200">
                     <Image 
-                        src={product.imagePath} 
+                        src={imageUrl} 
                         alt={product.productName}
                         className="rounded-lg object-contain w-full h-full"
                         layout="fill" 

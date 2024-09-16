@@ -59,8 +59,14 @@ export const getCategoryTypeProducts = async (categoryTypeId: number) : Promise<
   const url = `ecommerce/${orgId}/category-types/${categoryTypeId}/products`;
   try {
     const response = await handleGet(url);
-    return response.data;
+    if(response){
+      console.log('CategoryTypeProducts:', response.data);
+      return response.data;
+    }else{
+      return [];
+    }
   } catch (error) {
+    
     console.error('API Error:', error);
     throw error;
   }

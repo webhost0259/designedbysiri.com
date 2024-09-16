@@ -15,12 +15,20 @@ import { getAllCategoryTypes } from '../services/apis/api';
 import { CategoryType } from '../services/apis/models';
 
 const logoPath = '/logo.png';
+
+export interface MenuCategoryType{
+  name: string;
+  image: string;
+  id: number;
+}
+
+
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [cartCount, setCartCount] = useState<number>(0);
   const [openMenu, setOpenMenu] = useState(false);
-  const [categoryTypes, setCategoryTypes] = useState<{ name: string; image: string; id: number }[]>([]);
+  const [categoryTypes, setCategoryTypes] = useState<Array<MenuCategoryType>>([]);
   
   const toggleMenu = (close: boolean) => {
     setOpenMenu(close);
@@ -113,7 +121,7 @@ const Header = () => {
         <div className='mt-4'>
           <SearchBar onSearch={handleSearch} placeholder="Search Products"/>
         </div>
-        <MobileMenu openMenu={openMenu} toggleMenu={toggleMenu}/>
+        <MobileMenu openMenu={openMenu} toggleMenu={toggleMenu} categoryTypes={categoryTypes}/>
       </div>
       {/* Code Only for Laptop ---------------------------------------- */}
       <div className="hidden laptop:block container mx-auto py-2 lg:visible md:hidden sm:hidden">

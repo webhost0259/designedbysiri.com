@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 
 
-// const BASE_URL = 'http://localhost:8080/api/v1'; 
+const BASE_URL = 'http://localhost:8080/api/v1'; 
 
-const BASE_URL = 'https://api.surfserver.in/api/v1'; 
+// const BASE_URL = 'https://api.surfserver.in/api/v1'; 
 
 
 export const handleGet = async (url: string, _params?: any) => {
