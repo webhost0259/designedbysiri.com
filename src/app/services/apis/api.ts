@@ -54,6 +54,7 @@ export const getAllCategoryTypes = async () : Promise<Array<CategoryType>> => {
   }
 }
 
+
 // -----------------------------Products---------------------------
 
 export const getCategoryTypeProducts = async (categoryTypeId: number) : Promise<Array<CategoryTypeProduct>> => {
