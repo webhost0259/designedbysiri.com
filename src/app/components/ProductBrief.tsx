@@ -2,27 +2,16 @@ import { Button } from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { ProductBasicResponse } from '../services/apis/ecomModels';
 
-export interface Product{
-  productId: string,
-  orgId: number,
-  storeId: string,
-  sku: string,
-  name: string,
-  description: string,
-  price: number,
-  quantity: number,
-  status: boolean,
-  createdAt: string,
-  updatedAt: string,
-  imageUrl: string // Array of image URLs
-}
 interface ProductBriefProps {
-  product: Product
+  product: ProductBasicResponse
 }
 
 const length = 12;
 const ProductBrief = ({ product } : ProductBriefProps) => {
+
+  console.log(product);
 
   return (
     <div className="p-1 m-1 min-w-80 bg-white text-black rounded-lg shadow-lg item">
@@ -31,10 +20,11 @@ const ProductBrief = ({ product } : ProductBriefProps) => {
         <div className="flex flex-col items-stretch mb-4">
           <div className="relative w-76 h-48">
             <Image 
-              src={product.imageUrl} 
+              src={product.imagePath} 
               alt="Sireesha Reddy Designer Studio Logo, eligance with beauty" 
               fill={true}
               className="object-cover transition-transform duration-700 transform hover:scale-105"
+              unoptimized
             />
           </div>
           {/* {product.images.length > 1 && (
@@ -57,7 +47,7 @@ const ProductBrief = ({ product } : ProductBriefProps) => {
             <div className='flex justify-start mt-2 '>
               {product.description && <p className="text-gray-600 mb-2.5 text-sm leading-6.5">{product.description.length > 50 ? product.description.slice(0, 50) + '...' : product.description}</p>}
             </div>
-            <h2 className="absolute right-4 bottom-4 flex text-sm font-medium">Rs.{product.price.toFixed(2)}</h2>
+            <h2 className="absolute right-4 bottom-4 flex text-sm font-medium">Rs.{product.price}</h2>
           </div>
         </Link>
               {/* Product Details */}
