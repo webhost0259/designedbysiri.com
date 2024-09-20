@@ -1,10 +1,10 @@
-import { PRODUCTS } from '../components/data';
 import ProductBrief from '../components/ProductBrief';
+import { ProductBasicResponse } from '../services/apis/ecomModels';
 
-const SecondSection = () => {
-  // Sample data for product cards
-  const products = PRODUCTS;
-
+interface SecondSectionProps {
+  products: Array<ProductBasicResponse>;
+}
+const SecondSection = ({products}:SecondSectionProps) => {
 
   return (
     <section

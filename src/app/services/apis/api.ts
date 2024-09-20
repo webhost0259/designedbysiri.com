@@ -5,6 +5,7 @@ import { handleGet, handlePost } from "./handleApi";
 import Cookies from 'js-cookie';
 import { SignInFormInputs } from "@/app/users/signin/page";
 import { CategoryType, CategoryTypeProduct, Product } from "./models";
+import { ProductBasicResponse } from "./ecomModels";
 
 const orgId = 970017453;
 
@@ -60,7 +61,6 @@ export const getCategoryTypeProducts = async (categoryTypeId: number) : Promise<
   try {
     const response = await handleGet(url);
     if(response){
-      console.log('CategoryTypeProducts:', response.data);
       return response.data;
     }else{
       return [];
@@ -74,6 +74,17 @@ export const getCategoryTypeProducts = async (categoryTypeId: number) : Promise<
 
 export const getProduct = async (productId: string) : Promise<Product> => {
   const url = `ecommerce/${orgId}/products/${productId}`;
+  try {
+    const response = await handleGet(url);
+    return response.data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const getProductsForHomepage = async () : Promise<Array<ProductBasicResponse>> => {
+  const url = `ecommerce/${orgId}/products/home-page/items`;
   try {
     const response = await handleGet(url);
     return response.data;

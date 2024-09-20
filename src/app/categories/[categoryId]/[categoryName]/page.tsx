@@ -21,10 +21,10 @@ const CategoryPage = async ({ params: { categoryId, categoryName } }:
                 <ColorFilter />
                 <PriceFilter minPrice={0} maxPrice={100000}/>
             </div>
-            <div>
-                <div className="flex flex-row justify-between items-center">
+            <div className="w-full">
+                <div className="flex flex-row justify-between">
                     <h2 className="text-xl font-thin px-2">{decodedCategoryName}</h2>
-                    <SortOptions className="w-48"/>
+                    <SortOptions className="w-48 pr-4"/>
                 </div>
                 <div className="tablet:hidden justify-start min-w-48 px-4 space-y-4">
                     <Filter />

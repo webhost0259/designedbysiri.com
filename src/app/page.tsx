@@ -5,6 +5,7 @@ import Image from 'next/image'; // Import the 'Image' component from the appropr
 import SecondSection from './home-page-sections/SecondSection';
 import ThirdSection from './home-page-sections/ThirdSection';
 import { ApplicationDescription, ApplicationTitle } from './SEO/util';
+import { getProductsForHomepage } from './services/apis/api';
 
 interface HomePageProps {
   productData: {
@@ -16,7 +17,7 @@ interface HomePageProps {
 
  const HomePage = async () => {
 
-  const productData = await fetchProductData();
+  const productData = await getProductsForHomepage();
 
   return (
     <div className='text-black'>
@@ -30,7 +31,7 @@ interface HomePageProps {
 
       {/* Page Content */}
       <main>
-        <SecondSection />
+        <SecondSection products={productData}/>
         <ThirdSection />
       </main>
     </div>

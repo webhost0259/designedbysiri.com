@@ -58,6 +58,7 @@ const CartPage = () => {
                       alt={item.name}
                       fill={true}
                       className="rounded-lg object-cover"
+                      unoptimized
                     />
                   </div>
                 </Link>
