@@ -5,6 +5,7 @@ import ThirdSection from '@/app/home-page-sections/ThirdSection';
 import { generateProductSEOObject } from '@/app/SEO/util';
 import ProductSEO from '@/app/SEO/PRODUCTSEO';
 import { getProduct } from '@/app/services/apis/api';
+import AdditionalDetails from './AdditionalDetails';
 
 interface Props {
   product: Product | null;
@@ -51,6 +52,7 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
         canonical={seo.url}
       />
       <ProductDetails product={product} />
+      <AdditionalDetails product={product}/>
       <ThirdSection />
     </main>
   );

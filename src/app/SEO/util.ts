@@ -1,10 +1,10 @@
 import { Product } from "../services/apis/models";
 
-export const ApplicationTitle = 'Sireesha Reddy Designer Studio, Buy Indian Traditional Attire Online, Designed by Siri';
-export const ApplicationDescription = `Sireesha Reddy Designer Studio, Buy Indian Traditional Attire Online, Designed by Siri. Free shipping across India.
+export const ApplicationTitle = 'Designed by Siri | Sireesha Reddy Designer Studio, Buy Indian Traditional Attire Online, Designed by Siri';
+export const ApplicationDescription = `Designed by Siri | Sireesha Reddy Designer Studio, Buy Indian Traditional Attire Online, Designed by Siri. Free shipping across India.
                                       Wedding materials, stitched and unstitched materials, sarees, salwar kameez, kurtis, lehengas, anarkali suits, dupattas, shararas, and more.`
 
-export const ApplicationKeywords = 'Stitching, Customization, Designing, Wedding, eCommerce, Product, Buy Online, Indian Traditional Attire, Wedding Materials, Sarees, Salwar Kameez, Kurtis, Lehengas, Anarkali Suits, Dupattas, Shararas';
+export const ApplicationKeywords = 'Designed by Siri, Stitching, Customization, Designing, Wedding, eCommerce, Product, Buy Online, Indian Traditional Attire, Wedding Materials, Sarees, Salwar Kameez, Kurtis, Lehengas, Anarkali Suits, Dupattas, Shararas';
 export const ApplicationURL = 'https://designedbysiri.com';
 export const ApplicationImage = '/logo.png';
 export const ApplicationDatePublished = '2024-08-08';
@@ -65,7 +65,7 @@ export const generateProductSEOObject = async (product: Product) => {
     availability: product?.status ? 'In Stock' : 'Out of Stock',
     condition: "New",
     brand: product?.brandId,
-    manufacturer: "Sireesha Reddy Designer Studio",
+    manufacturer: "Designed by siri | Sireesha Reddy Designer Studio",
     model: product?.pattern,
     sku: product?.productId,
     gtin8: product?.productId,

@@ -14,13 +14,13 @@ interface SEOProps {
 
 const SEO: React.FC<SEOProps> = ({ title, description, image, url, datePublished, dateModified, keywords, canonical }) => {
   
-  image = 'https://develop.d23v49il7gq5ot.amplifyapp.com' + image;
+  image = 'https://designedbysiri.com' + image;
   
   return (
     <Head>
         <title>{title ? title : ApplicationTitle + ApplicationKeywords}</title>
         <meta name="description" content={description ? description : ApplicationDescription} />
-        <meta name="keywords" content={keywords ? keywords : ApplicationKeywords}></meta>
+        <meta name="keywords" content={ApplicationKeywords}></meta>
         <meta name="robots" content='index, follow' />
         <meta property="og:title" content={title ? title : ApplicationTitle} />
         <meta property="og:description" content={description ? description : ApplicationDescription} />
