@@ -58,7 +58,6 @@ const Header = () => {
     };
 
     getAllCategoryTypes().then((response) => {
-      console.log('Categories:', response);
       const categories: { name: string; image: string; id: number }[] = [];
       if(response){
         response.map((item: CategoryType) => {
@@ -187,11 +186,12 @@ const Header = () => {
                     Stitching Connect
                   </Link>
                 </li>
-                <li><a href={"/support/delivery-return-policy"} className="hover:text-green-600 hover:font-semibold">Delivery/Return</a></li>
               </ul>
             </nav>
           </div>
-          <SearchBar onSearch={handleSearch} placeholder="Search Products"/>
+          <div className='w-96'>
+            <SearchBar onSearch={handleSearch} placeholder="Search Products"/>
+          </div>
           <div className="flex flex-row account-cart space-x-8">
             <div className="flex flex-row items-center">
               <CgProfile className="mr-2" />

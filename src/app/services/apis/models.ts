@@ -61,3 +61,18 @@ export interface Product{
     fit: string,
     careInstructions: string
 }
+
+export interface ProductSearch{
+    productId: string;
+    orgId: number;
+    storeId: string;
+    sku: string;
+    name: string;
+    description?: string;
+    price: number;
+    quantity: number;
+    status: boolean;
+    isTopProduct: boolean;
+    createdAt?: string; 
+    updatedAt?: string;
+}

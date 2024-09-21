@@ -18,11 +18,9 @@ const SignIn = () => {
 
   const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
     // Handle sign-in logic here
-    console.log("data : ", data);
     setLoading(true);
     try {
       const res = await signin(data);
-      console.log("res: ", res);
       setLoading(false);
       Cookies.set('token', res.token, { secure: true, sameSite: 'strict' });
       Cookies.set('customerId', res.customer.customerId, { secure: true, sameSite: 'strict' });
