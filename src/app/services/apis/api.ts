@@ -4,7 +4,7 @@ import { SignUpFormInputs } from "@/app/users/signup/page";
 import { handleGet, handlePost } from "./handleApi";
 import Cookies from 'js-cookie';
 import { SignInFormInputs } from "@/app/users/signin/page";
-import { CategoryType, CategoryTypeProduct, Product } from "./models";
+import { CategoryType, CategoryTypeProduct, Product, ProductSearch } from "./models";
 import { ProductBasicResponse } from "./ecomModels";
 
 const orgId = 970017453;
@@ -86,6 +86,17 @@ export const getProduct = async (productId: string) : Promise<Product> => {
 
 export const getProductsForHomepage = async () : Promise<Array<ProductBasicResponse>> => {
   const url = `ecommerce/${orgId}/products/home-page/items`;
+  try {
+    const response = await handleGet(url);
+    return response.data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const searchProducts = async (searchTerm: string) : Promise<Array<ProductSearch>> => {
+  const url = `ecommerce/${orgId}/products/search/all?searchTerm=${searchTerm}`;
   try {
     const response = await handleGet(url);
     return response.data;

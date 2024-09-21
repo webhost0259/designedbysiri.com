@@ -11,8 +11,6 @@ interface ProductBriefProps {
 const length = 12;
 const ProductBrief = ({ product } : ProductBriefProps) => {
 
-  console.log(product);
-
   return (
     <div className="p-1 m-1 min-w-80 bg-white text-black rounded-lg shadow-lg item">
       {/* Product Images */}

@@ -20,12 +20,10 @@ const SignUp = () => {
 
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
     // Handle sign-up logic here
-    console.log("data : ", data);
     setLoading(true);
     try {
       const res = await createCustomer(data);
       Cookies.set('token', res.data.token, { secure: true, sameSite: 'strict' });
-      console.log("res : ", res);
     } catch (error) {
       console.error("Sign-in error: ", error);
     } finally {

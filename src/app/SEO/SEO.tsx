@@ -16,7 +16,6 @@ const SEO: React.FC<SEOProps> = ({ title, description, image, url, datePublished
   
   image = 'https://develop.d23v49il7gq5ot.amplifyapp.com' + image;
   
-  console.log("SEO: title: ", title);
   return (
     <Head>
         <title>{title ? title : ApplicationTitle + ApplicationKeywords}</title>
