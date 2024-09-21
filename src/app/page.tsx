@@ -38,16 +38,4 @@ interface HomePageProps {
   );
 };
 
-// Function to fetch product data
-async function fetchProductData() {
-  // Simulating fetching data from an API
-  const productData = {
-    title: 'Best Products in Our Store',
-    description: 'Check out our wide range of products including the latest in fashion and technology.',
-    image: '/logo.png'
-  };
-
-  return productData;
-}
-
 export default HomePage;
