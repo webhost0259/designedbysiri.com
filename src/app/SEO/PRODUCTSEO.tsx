@@ -1,3 +1,26 @@
+
+interface ProductSEOProps {
+  title: string;
+  description: string;
+  keywords: string;
+  url: string;
+  image: string;
+  type: string;
+  price: number;
+  currency: string;
+  availability: string;
+  condition: string;
+  brand: string;
+  manufacturer: string;
+  model: string;
+  sku?: string;
+  gtin8?: string;
+  gtin13?: string;
+  canonical: string;
+  datePublished: string;
+  dateModified: string;
+}
+
 const ProductSEO: React.FC<ProductSEOProps> = ({
   title,
   description,
