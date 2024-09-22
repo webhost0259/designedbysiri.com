@@ -33,7 +33,7 @@ export interface CategoryType{
 }
 
 export interface CategoryTypeProduct{
-    productId: number,
+    productId: string,
     productName: string,
     productDescription: string,
     price: number,
