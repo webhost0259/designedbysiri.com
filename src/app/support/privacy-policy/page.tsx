@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
       <h1 className="text-4xl font-bold text-center mb-6">Privacy Policy</h1>
       
       <p className="text-lg text-gray-700 mb-4">
-        At [Your Store Name], we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website or make a purchase from our store.
+        At Sireesha Reddy Designer Studio, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website or make a purchase from our store.
       </p>
 
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Information We Collect</h2>

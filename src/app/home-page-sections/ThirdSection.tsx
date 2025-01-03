@@ -13,7 +13,6 @@ const ThirdSection = () => {
     console.log('Third Section Mounted');
     setLoading(true);
     getAllCategoryTypes().then((data) => {
-      console.log("zcx" , data);
       setCategoryTypes(data);
       setLoading(false);
     })
