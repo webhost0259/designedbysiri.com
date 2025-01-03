@@ -46,7 +46,7 @@ const TermsOfService: FC = () => {
             <p>We may terminate or suspend your access to our Site or Services at any time, with or without cause, and with or without notice, for any reason.</p>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">11. Governing Law</h2>
-            <p>These Terms shall be governed by and construed in accordance with the laws of [your jurisdiction]. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of [your jurisdiction].</p>
+            <p>These Terms shall be governed by and construed in accordance with the laws of India. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of India.</p>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">12. Contact Us</h2>
                 <p>If you have any questions about these Terms or our Site and Services, please contact us at:</p>

@@ -9,7 +9,7 @@ const DeliveryAndReturnPolicy = () => {
       <section className="mb-6 space-y-4">
         <h2 className="text-xl font-semibold mb-4">Delivery Information</h2>
         <p className="mb-2">
-          <strong>Delivery Areas:</strong> We currently deliver to all major cities and towns within [Country/Region]. International shipping is available for select countries. Please contact us for more details.
+          <strong>Delivery Areas:</strong> We currently deliver to all major cities and towns within India. International shipping is available for select countries. Please contact us for more details.
         </p>
         <p className="mb-2">
           <strong>Shipping Methods:</strong> Choose from standard delivery, expedited delivery, or our priority shipping option. Shipping costs vary based on the delivery method and destination.
@@ -21,7 +21,7 @@ const DeliveryAndReturnPolicy = () => {
           <strong>Tracking:</strong> After your order has shipped, you will receive a tracking number via email. You can track your order through our website or the carrier&apos;s website.
         </p>
         <p className="mb-2">
-          <strong>Shipping Costs:</strong> Shipping costs are calculated at checkout based on the delivery method and destination. We offer free standard shipping on orders over [amount].
+          <strong>Shipping Costs:</strong> Shipping costs are calculated at checkout based on the delivery method and destination. We offer free standard shipping on orders over Rs.20000 within India.
         </p>
         <p className="mb-2">
           <strong>Delivery Times:</strong> Standard delivery takes 5-10 business days, expedited delivery takes 2-5 business days, and priority shipping arrives within 3 days.
@@ -43,13 +43,13 @@ const DeliveryAndReturnPolicy = () => {
           <strong>Return Shipping Costs:</strong> Customers are responsible for return shipping costs unless the item is defective or incorrect.
         </p>
         <p className="mb-2">
-          <strong>Refunds and Exchanges:</strong> Refunds are processed within 7-10 business days after we receive the returned item. Exchanges are subject to availability.
+          <strong>Refunds and Exchanges:</strong> Refunds are credited within 7-10 business days after we receive the returned item. Exchanges are subject to availability.
         </p>
         <p className="mb-2">
           <strong>Condition of Returns:</strong> Returned items must be unused and in their original packaging. Items that do not meet these conditions may not be eligible for a refund.
         </p>
         <p className="mb-2">
-          <strong>Restocking Fees:</strong> A restocking fee of [percentage/amount] may apply to certain returns.
+          <strong>Restocking Fees:</strong> A restocking fee of Rs.100 may apply to certain returns.
         </p>
         <p className="mb-2">
           <strong>Contact Information:</strong> For return assistance or inquiries, please email us at <a href="mailto:designerstudio.siri@gmail.com" className="text-blue-500 hover:underline">designerstudio.siri@gmail.com</a>.
