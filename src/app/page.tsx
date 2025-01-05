@@ -15,7 +15,7 @@ interface HomePageProps {
   };
 }
 
- const HomePage = async () => {
+ const HomePage = async () => { 
 
   const productData = await getProductsForHomepage();
 
