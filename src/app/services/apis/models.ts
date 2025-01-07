@@ -76,3 +76,11 @@ export interface ProductSearch{
     createdAt?: string; 
     updatedAt?: string;
 }
+
+export interface paymentUIpayload {
+    merchantTransactionId: string,
+    customerId : string,
+    amount : number,
+    redirectUrl: string,
+    mobileNumber ?: number
+}

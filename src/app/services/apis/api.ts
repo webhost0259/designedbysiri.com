@@ -106,3 +106,16 @@ export const searchProducts = async (searchTerm: string) : Promise<Array<Product
   }
 }
 
+// -----------------------------Paymnets---------------------------
+
+export const initiatePayment = async (payload: any) : Promise<any> => {
+  const url = `payment/phonepe/transaction`;
+  try {
+    const response = await handlePost(url, payload);
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
