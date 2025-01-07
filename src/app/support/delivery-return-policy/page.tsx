@@ -43,7 +43,7 @@ const DeliveryAndReturnPolicy = () => {
           <strong>Return Shipping Costs:</strong> Customers are responsible for return shipping costs unless the item is defective or incorrect.
         </p>
         <p className="mb-2">
-          <strong>Refunds and Exchanges:</strong> Refunds are credited within 7-10 business days after we receive the returned item. Exchanges are subject to availability.
+          <strong>Refunds:</strong> Refunds are credited within 7-10 business days after we receive the returned item. 
         </p>
         <p className="mb-2">
           <strong>Condition of Returns:</strong> Returned items must be unused and in their original packaging. Items that do not meet these conditions may not be eligible for a refund.

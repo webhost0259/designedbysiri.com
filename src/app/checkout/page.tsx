@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSWRConfig } from 'swr';
 import useSWR from 'swr';
+import { paymentUIpayload } from '../services/apis/models';
+import { initiatePayment } from '../services/apis/api';
 
 const CARTKEY = 'siri-cart';
 
@@ -25,6 +27,46 @@ interface CheckoutForm {
 }
 
 const CheckoutPage = () => {
+
+  const [formData, setFormData] = useState<paymentUIpayload>({
+    merchantTransactionId: "TRNS1234",
+    customerId: "CUST1234",
+    amount: 100,
+    redirectUrl: "https://designedbysiri.com",
+    mobileNumber: 8213000000,
+  });
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handlePaymentSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await initiatePayment(formData);
+
+      initiatePayment(formData).then(({data}) => {
+        console.log('Payment initiated : ', data);
+      }).catch((err) => {
+        console.log('Payment initiation failed : ', err);
+      })
+
+      // if (response.data.success) {
+      //   // Redirect to the payment gateway
+      //   window.location.href = response.data.redirectUrl;
+      //   console.log("window.location.href : ", window.location.href)
+      // } else {
+      //   setErrorMessage(response.data.message || "Payment initiation failed.");
+      //   // setIsModalOpen(true);
+      // }
+    } catch (err: any) {
+      setErrorMessage(err.response?.data?.message || "An error occurred.");
+      // setIsModalOpen(true);
+    } finally {
+      // setIsSubmitting(false);
+    }
+  };
 
   const fetchCart = (): CartItem[] => {
     const cart = localStorage.getItem(CARTKEY);
@@ -104,7 +146,7 @@ const CheckoutPage = () => {
                   {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
                 </div>
               )}
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handlePaymentSubmit} className="space-y-6">
               <div>
                 <label htmlFor="address" className="block text-sm font-medium text-gray-700">
                   Address
@@ -148,7 +190,7 @@ const CheckoutPage = () => {
 
               <div>
                 <label htmlFor="zip" className="block text-sm font-medium text-gray-700">
-                  ZIP Code
+                  Pin Code
                 </label>
                 <input
                   type="text"
@@ -159,7 +201,7 @@ const CheckoutPage = () => {
                 {errors.zip && <p className="text-red-500 text-sm mt-1">{errors.zip.message}</p>}
               </div>
 
-              <div className='pt-12 border-t-2 border-green-600'>
+              {/* <div className='pt-12 border-t-2 border-green-600'>
                 <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">
                   Card Number
                 </label>
@@ -199,7 +241,7 @@ const CheckoutPage = () => {
                   />
                   {errors.cvv && <p className="text-red-500 text-sm mt-1">{errors.cvv.message}</p>}
                 </div>
-              </div>
+              </div> */}
               <button
                 type="submit"
                 className="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
