@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import { paymentUIpayload } from '../services/apis/models';
 import { initiatePayment } from '../services/apis/api';
 import toast from 'react-hot-toast';
+import { v4 as uuidv4 } from 'uuid';
 
 const CARTKEY = 'siri-cart';
 
@@ -128,7 +129,10 @@ const CheckoutPage = () => {
     }
 
     try {
+      const newUuid = uuidv4();
       formData.amount = totalAmount;
+      formData.merchantTransactionId = newUuid;
+      
       initiatePayment(formData).then((res) => {
         // Clear the cart from localStorage
         localStorage.removeItem(CARTKEY);
