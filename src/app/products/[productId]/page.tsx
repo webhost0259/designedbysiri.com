@@ -26,6 +26,8 @@ const ProductPage = async ({ params }: { params: { productId: string } }) => {
     return <div>Product not found</div>;
   }
 
+  console.log('Product:', product);
+  
   const seo = await generateProductSEOObject(product);
 
   return (

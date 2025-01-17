@@ -5,6 +5,7 @@ import { useSWRConfig } from 'swr';
 import useSWR from 'swr';
 import { paymentUIpayload } from '../services/apis/models';
 import { initiatePayment } from '../services/apis/api';
+import toast from 'react-hot-toast';
 
 const CARTKEY = 'siri-cart';
 
@@ -28,46 +29,6 @@ interface CheckoutForm {
 
 const CheckoutPage = () => {
 
-  const [formData, setFormData] = useState<paymentUIpayload>({
-    merchantTransactionId: "TRNS1234",
-    customerId: "CUST1234",
-    amount: 100,
-    redirectUrl: "https://designedbysiri.com",
-    mobileNumber: 8213000000,
-  });
-
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const handlePaymentSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // setIsSubmitting(true);
-    setErrorMessage(null);
-
-    try {
-      const response = await initiatePayment(formData);
-
-      initiatePayment(formData).then(({data}) => {
-        console.log('Payment initiated : ', data);
-      }).catch((err) => {
-        console.log('Payment initiation failed : ', err);
-      })
-
-      // if (response.data.success) {
-      //   // Redirect to the payment gateway
-      //   window.location.href = response.data.redirectUrl;
-      //   console.log("window.location.href : ", window.location.href)
-      // } else {
-      //   setErrorMessage(response.data.message || "Payment initiation failed.");
-      //   // setIsModalOpen(true);
-      // }
-    } catch (err: any) {
-      setErrorMessage(err.response?.data?.message || "An error occurred.");
-      // setIsModalOpen(true);
-    } finally {
-      // setIsSubmitting(false);
-    }
-  };
-
   const fetchCart = (): CartItem[] => {
     const cart = localStorage.getItem(CARTKEY);
     return cart ? JSON.parse(cart) : [];
@@ -75,6 +36,118 @@ const CheckoutPage = () => {
   const { mutate } = useSWRConfig();
   const { data: cart, mutate: mutateCart } = useSWR(CARTKEY, fetchCart);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  const calculateSubTotal = () => {
+    const val = cart?.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    return parseFloat(val || '0') || 0;
+  };
+
+  const totalAmount = parseFloat(calculateSubTotal().toString()) * 100;
+
+  const [formData, setFormData] = useState<paymentUIpayload>({
+    merchantTransactionId: "TRNS1234",
+    customerId: "CUST1234",
+    amount: 100,
+    redirectUrl: "https://designedbysiri.com",
+    mobileNumber: 8870692077,
+  });
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const toastError = (message ?: string) => {
+    toast.error(
+      (t) => (
+        <div className='flex justify-between items-center'>
+          <p>{message}</p>
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="mt-2 py-1 px-3 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600"
+          >
+            Close
+          </button>
+        </div>
+      ),
+      {
+        duration: Infinity, // Toast will persist until dismissed
+        position: 'top-center',
+        style: {
+          background: '#D32F2F', // Red background for error
+          color: '#fff',
+        }
+      } 
+    );
+  }
+
+  const handlePaymentSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // setIsSubmitting(true);
+    setErrorMessage(null);
+
+    // Fetch the email and address values from the form
+    const emailField = document.getElementById("email") as HTMLInputElement;
+    const addressField = document.getElementById("address") as HTMLInputElement;
+    const cityField = document.getElementById("city") as HTMLInputElement;
+    const stateField = document.getElementById("state") as HTMLInputElement;
+    const zipField = document.getElementById("zip") as HTMLInputElement;
+    const email = emailField?.value.trim();
+    const address = addressField?.value.trim();
+    const city = cityField?.value.trim();
+    const state = stateField?.value.trim();
+    const zip = zipField?.value.trim();
+
+    // Validation checks
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      setErrorMessage("Please provide a valid email address.");
+      toastError("Please provide a valid email address.")
+      return;
+    }
+    if (!address) {
+      setErrorMessage("Please provide a valid address.");
+      toastError("Please provide a valid address.")
+      return;
+    }
+    if (!city) {
+      setErrorMessage("Please provide a valid city.");
+      toastError("Please provide a valid city.")
+      return;
+    }
+    if (!state) {
+      setErrorMessage("Please provide a valid state.");
+      toastError("Please provide a valid state.")
+      return;
+    }
+    if (!zip) {
+      setErrorMessage("Please provide a valid pin code.");
+      toastError("Please provide a valid pin code.")
+      return;
+    }
+
+    if(errorMessage?.length){
+      toastError(errorMessage);
+      return;
+    }
+
+    try {
+      formData.amount = totalAmount;
+      initiatePayment(formData).then((res) => {
+        // Clear the cart from localStorage
+        localStorage.removeItem(CARTKEY);
+        // Update the cart state
+        mutateCart();
+        if(res.success){
+          window.location.href = res.redirectUrl;
+        }else {
+            setErrorMessage(res.data.message || "Payment initiation failed.");
+          }
+      }).catch((err) => {
+        console.log('Payment initiation failed : ', err);
+      })
+    } finally {
+      // setIsSubmitting(false);
+    }
+  };
+
+  
 
   const {
     register,
@@ -91,15 +164,6 @@ const CheckoutPage = () => {
   const checkUserLoggedIn = (): boolean => {
     // Replace with actual logic to check user authentication status
     return false; // Assuming user is not logged in for now
-  };
-
-  const calculateSubTotal = () => {
-    return cart?.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
-  };
-
-  const onSubmit = (data: CheckoutForm) => {
-    console.log('Checkout Data:', data);
-    // Implement checkout logic here
   };
 
   return (
