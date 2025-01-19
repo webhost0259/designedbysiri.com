@@ -11,8 +11,9 @@ import useCart from '../services/hooks/useCart';
 import { CARTKEY, SIRICARTUPDATE } from '../services/constants';
 import { RxHamburgerMenu } from "react-icons/rx";
 import MobileMenu from './MobileMenu';
-import { getAllCategoryTypes } from '../services/apis/api';
+import { getAllCategoryTypes, validateToken } from '../services/apis/api';
 import { CategoryType } from '../services/apis/models';
+import Cookies from 'js-cookie';
 
 const logoPath = '/logo.png';
 
@@ -29,6 +30,7 @@ const Header = () => {
   const [cartCount, setCartCount] = useState<number>(0);
   const [openMenu, setOpenMenu] = useState(false);
   const [categoryTypes, setCategoryTypes] = useState<Array<MenuCategoryType>>([]);
+  const [userName, setUserName] = useState<string>('sign in');
   
   const toggleMenu = (close: boolean) => {
     setOpenMenu(close);
@@ -56,6 +58,19 @@ const Header = () => {
       const cart = JSON.parse(localStorage.getItem(CARTKEY) || '[]');
       setCartCount(cart.length);
     };
+    
+    validateToken().then((response) => {
+      console.log('Token validation:', response);
+      if(response){
+        const user_name = Cookies.get('userName');
+        console.log('User name:', user_name);
+        if(user_name){
+          setUserName(user_name);
+        }
+      }else{
+        setUserName('sign in');
+      }
+    });
 
     getAllCategoryTypes().then((response) => {
       const categories: { name: string; image: string; id: number }[] = [];
@@ -120,7 +135,7 @@ const Header = () => {
         <div className='mt-4'>
           <SearchBar onSearch={handleSearch} placeholder="Search Products"/>
         </div>
-        <MobileMenu openMenu={openMenu} toggleMenu={toggleMenu} categoryTypes={categoryTypes}/>
+        <MobileMenu userName={userName} openMenu={openMenu} toggleMenu={toggleMenu} categoryTypes={categoryTypes}/>
       </div>
       {/* Code Only for Laptop ---------------------------------------- */}
       <div className="hidden laptop:block container mx-auto py-2 lg:visible md:hidden sm:hidden">
@@ -197,7 +212,7 @@ const Header = () => {
               <CgProfile className="mr-2" />
               <Menu as="div" className="relative">
                 <MenuButton className="transition-all duration-200 hover:text-green-600 hover:font-semibold">
-                  Account
+                  Hi, {userName}
                 </MenuButton>
                 <Transition
                   as={Fragment}
@@ -261,10 +276,14 @@ const Header = () => {
                     <MenuItem>
                       {({ active }) => (
                         <a
-                          href="#logout"
                           className={`${
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                            active ? 'bg-gray-100 text-gray-900 cursor-pointer' : 'text-gray-700'
                           } block px-4 py-2 text-sm`}
+                          onClick={() => {
+                            Cookies.remove('token');
+                            Cookies.remove('userName');
+                            window.location.href = '/';
+                          }}
                         >
                           Logout
                         </a>

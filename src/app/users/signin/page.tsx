@@ -16,21 +16,21 @@ const SignIn = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<SignInFormInputs>();
   const [loading, setLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<SignInFormInputs> = async (data_) => {
     // Handle sign-in logic here
     setLoading(true);
     try {
-      const res = await signin(data);
+      const res = await signin(data_);
       setLoading(false);
-      Cookies.set('token', res.token, { secure: true, sameSite: 'strict' });
-      Cookies.set('customerId', res.customer.customerId, { secure: true, sameSite: 'strict' });
-      Cookies.set('firstName', res.customer.firstName, { secure: true, sameSite: 'strict' });
-      Cookies.set('lastName', res.customer.lastName, { secure: true, sameSite: 'strict' });
+      Cookies.set('token', res.data.token, { secure: true, sameSite: 'strict' });
+      const {customer} = res.data;
+      const userName = customer.firstName + " " + customer.lastName ; // Extract the userName from the response
+      // Optionally, store the userName for later use (e.g., in cookies or localStorage)
+      Cookies.set('userName', userName, { secure: true, sameSite: 'strict' });
       window.location.href = '/';
     } catch (error) {
       // Capture the error message
       let errorMessage = 'An unexpected error occurred';
-      
       // Check if the error has a response (common in HTTP errors)
       if ((error as any).response) {
         // Extract the message from the response data
@@ -39,7 +39,6 @@ const SignIn = () => {
         // Fallback to a generic error message
         errorMessage = (error as any).message;
       }
-    
       toast.error(errorMessage, {
         duration: 3000,
         position: 'top-center',
