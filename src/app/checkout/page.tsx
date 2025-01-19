@@ -138,8 +138,8 @@ const CheckoutPage = () => {
         localStorage.removeItem(CARTKEY);
         // Update the cart state
         mutateCart();
-        if(res.success){
-          window.location.href = res.redirectUrl;
+        if(res.data.success){
+          window.location.href = res.data.redirectUrl;
         }else {
             setErrorMessage(res.data.message || "Payment initiation failed.");
           }
