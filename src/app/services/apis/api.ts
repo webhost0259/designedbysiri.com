@@ -9,14 +9,36 @@ import { ProductBasicResponse } from "./ecomModels";
 
 const orgId = 970017453;
 
+export const validateToken = async () : Promise<boolean> => {
+  const url = `ecommerce/${orgId}/customer/validateToken`;
+  try {
+    const response = await handleGet(url);
+    if(response){
+      return true;
+    }else{
+      return false;
+    }
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+//----------------------Users----------------------------------
 export const createCustomer = async (creadVaultUser: SignUpFormInputs) : Promise<any> => {
   const url = `ecommerce/${orgId}/customer`;
   try {
     const response = await handlePost(url, creadVaultUser);
+    console.log("Res 1: ", response);
     return response;
   } catch (error) {
+    console.log("Res 1 error: ");
     console.error('API Error:', error);
-    throw error;
+    if (error instanceof Error) {
+      return error.message;
+    } else {
+      return String(error);
+    }
   }
 };
 

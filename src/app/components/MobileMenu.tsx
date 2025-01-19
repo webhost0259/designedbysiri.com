@@ -11,11 +11,12 @@ import Cookies from 'js-cookie';
 import { MenuCategoryType } from './Header';
 
 interface MobileMenuProps {
+    userName: string;
     openMenu: boolean;
     toggleMenu: (close: boolean) => void;
     categoryTypes: Array<MenuCategoryType>;
 }
-export default function MobileMenu({openMenu, toggleMenu, categoryTypes} : MobileMenuProps) {
+export default function MobileMenu({userName, openMenu, toggleMenu, categoryTypes} : MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(openMenu);
   const [customerId, setCustomerId] = useState<string | undefined>();
   const [firstName, setFirstName] = useState<string | undefined>();
@@ -23,7 +24,7 @@ export default function MobileMenu({openMenu, toggleMenu, categoryTypes} : Mobil
 
   useEffect(() => {
     setIsOpen(openMenu);
-    const token = Cookies.get('token');
+    
   }, [openMenu]);
 
   const onClick = () => {
@@ -44,7 +45,7 @@ export default function MobileMenu({openMenu, toggleMenu, categoryTypes} : Mobil
                 href="/users/signin" 
                 className="text-xl transition-all duration-200 hover:text-green-600 hover:font-semibold"
             >
-                Hello, User
+                Hi, {userName}
             </a>
         </div>
         <button
@@ -137,7 +138,14 @@ export default function MobileMenu({openMenu, toggleMenu, categoryTypes} : Mobil
               </a>
             </li>
             <li className='pt-2'>
-              <a href="#contact" className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900">
+              <a 
+                className="flex flex-row items-center text-xl text-gray-700 hover:text-gray-900 cursor-pointer"
+                onClick={() => {
+                  Cookies.remove('token');
+                  Cookies.remove('userName');
+                  window.location.href = '/';
+                }}
+                >
                 <MdOutlineLogout className='text-black mr-2'/> Log Out
               </a>
             </li>

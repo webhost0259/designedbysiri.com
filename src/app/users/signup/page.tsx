@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { createCustomer } from '@/app/services/apis/api';
 import Cookies from 'js-cookie';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export interface SignUpFormInputs {
   firstName ?: string,
@@ -22,14 +23,38 @@ const SignUp = () => {
     // Handle sign-up logic here
     setLoading(true);
     try {
-      const res = await createCustomer(data);
-      Cookies.set('token', res.data.token, { secure: true, sameSite: 'strict' });
+      // const res = await createCustomer(data);
+      createCustomer(data).then((res) => {
+        console.log("Sign-up response: ", res);
+        console.log("Sign-up response status: ", res.status);
+        if(res.status === 200 || res.status === 201) {
+          const {data} = res.data;
+          console.log("Sign-up successful : ", data);
+          Cookies.set('token', data.token, { secure: true, sameSite: 'strict' });
+          // Display the user name
+          const userName = data.customer.firstName + " " + data.customer.lastName ; // Extract the userName from the response
+          console.log("Welcome, " + userName);
+          // Optionally, store the userName for later use (e.g., in cookies or localStorage)
+          Cookies.set('userName', userName, { secure: true, sameSite: 'strict' });
+          // Redirect to the home page
+          window.location.href = '/';
+        }else {
+          toast.error(res, {
+            duration: 5000,
+            position: 'top-center',
+            style: {
+              background: 'red',
+              color: '#fff',
+            },
+            icon: '🔥',
+          });
+        }
+      })
     } catch (error) {
-      console.error("Sign-in error: ", error);
+      console.error('Sign-up Error:', error);
     } finally {
       setLoading(false);
     }
-    window.location.href = '/';
   };
 
   return (

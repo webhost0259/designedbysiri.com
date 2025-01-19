@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 
 
-//  const BASE_URL = 'http://localhost:8080/api/v1'; 
+ const BASE_URL = 'http://localhost:8080/api/v1'; 
 
-const BASE_URL = 'https://api.surfserver.in/api/v1'; 
+// const BASE_URL = 'https://api.surfserver.in/api/v1'; 
 
 
 export const handleGet = async (url: string, _params?: any) => {
@@ -42,10 +42,17 @@ export const handlePost = async (url: string, requestBody: any) => {
             },
             body: JSON.stringify(requestBody)
         });
+        console.log('response', response);
         if (!response.ok) {
+            if(response.status === 409) {
+                throw new Error('User already exists. Try logging in with email or phone number');
+            }
             throw new Error('Failed to fetch items');
         }
-        return await response.json();
+        // Parse the response JSON
+        const data = await response.json();
+        // Return both status and data
+        return { status: response.status, data };
     } catch (error) {
         console.error('API Error:', error);
         throw error;
