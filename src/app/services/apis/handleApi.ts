@@ -1,9 +1,10 @@
 import Cookies from 'js-cookie';
+import toast from 'react-hot-toast';
 
 
-//   const BASE_URL = 'http://localhost:8080/api/v1'; 
+   const BASE_URL = 'http://localhost:8080/api/v1'; 
 
-const BASE_URL = 'https://api.surfserver.in/api/v1'; 
+// const BASE_URL = 'https://api.surfserver.in/api/v1'; 
 
 
 export const handleGet = async (url: string, _params?: any) => {
@@ -19,9 +20,19 @@ export const handleGet = async (url: string, _params?: any) => {
                 'Content-Type': 'application/json',
             }
         });
-        if (!response.ok) {
-            throw new Error('Failed to fetch items');
-        }
+        // console.log("response", response);
+        // if(response.status === 401) {
+        //     toast.error("Session Expired!!", {
+        //         duration: 3000,
+        //         position: 'top-center',
+        //         style: {
+        //           background: 'red',
+        //           color: '#fff',
+        //         },
+        //       });
+        // }else if (!response.ok && response.status !== 401) {
+        //     throw new Error('Failed to fetch items');
+        // }
         return await response.json();
     } catch (error) {
         console.error('API Error:', error);

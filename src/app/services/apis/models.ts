@@ -1,6 +1,6 @@
 //DB Model
 export interface Customer{
-    customerId: number,
+    customerId: string,
     orgId?: number,
     firstName ?: string,
     lastName ?: string,
@@ -11,13 +11,14 @@ export interface Customer{
 
 //DB Model
 export interface CustomerCredVault{
-    customerId: number,
+    customerId: string,
     email?: string,
     phone?: number,
     password: string,
 }
 
 export interface Address{
+    id: string,
     line1 : string,
     line2 ?: string,
     city: string,
@@ -83,4 +84,14 @@ export interface paymentUIpayload {
     amount : number,
     redirectUrl: string,
     mobileNumber ?: number
+}
+
+export interface Customer{
+    customerId: string,
+    orgId?: number,
+    firstName ?: string,
+    lastName ?: string,
+    email ?: string,
+    phone ?: number
+    addresses?: Array<Address>,
 }
