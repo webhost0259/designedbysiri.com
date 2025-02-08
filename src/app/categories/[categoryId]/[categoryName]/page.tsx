@@ -6,46 +6,45 @@ import Filter from "@/app/filters/Filter";
 import { getCategoryTypeProducts } from "@/app/services/apis/api";
 import { CategoryTypeProduct } from "@/app/services/apis/models";
 
-
-const CategoryPage = async ({ params: { categoryId, categoryName } }: 
-            { params: { categoryId: number, categoryName: string } }) => {
-    
-    const products: Array<CategoryTypeProduct> = await getCategoryTypeProducts(categoryId);
-    
-    const decodedCategoryName = decodeURIComponent(categoryName);
-
-    return (
-        <div className="flex flex-col tablet:flex-row min-h-screen p-2 divide-x-2 text-black">
-            <div className="hidden tablet:block justify-start min-w-48 px-4 space-y-4">
-                <h1 className="text-md font-medium">Filter</h1>
-                <ColorFilter />
-                <PriceFilter minPrice={0} maxPrice={100000}/>
-            </div>
-            <div className="w-full">
-                <div className="flex flex-row justify-between">
-                    <h2 className="text-xl font-thin px-2">{decodedCategoryName}</h2>
-                    <SortOptions className="w-48 pr-4"/>
-                </div>
-                <div className="tablet:hidden justify-start min-w-48 px-4 space-y-4">
-                    <Filter />
-                    {/* <ColorFilter />
-                    <PriceFilter minPrice={0} maxPrice={100000}/> */}
-                </div>
-                <div className="flex flex-wrap justify-stretch mt-8">
-                    {
-                       products.length > 0 ?
-                        products.map((product, index) => {
-                            return <CategoryProductCard key={index} product={product}/>
-                        })  
-                        :
-                        <div className="text-lg font-thin text-center w-full p-2">
-                            No products found For the Category {decodedCategoryName}
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export default CategoryPage;
+interface CategoryPageProps {
+    params: Promise<{ categoryId: string; categoryName: string }>;
+  }
+  
+  const CategoryPage = async ({ params }: CategoryPageProps) => {
+      const { categoryId, categoryName } = await params;  // Ensure `params` is awaited
+  
+      const products = await getCategoryTypeProducts(parseInt(categoryId));
+      const decodedCategoryName = decodeURIComponent(categoryName);
+  
+      return (
+          <div className="flex flex-col tablet:flex-row min-h-screen p-2 divide-x-2 text-black">
+              <div className="hidden tablet:block justify-start min-w-48 px-4 space-y-4">
+                  <h1 className="text-md font-medium">Filter</h1>
+                  <ColorFilter />
+                  <PriceFilter minPrice={0} maxPrice={100000} />
+              </div>
+              <div className="w-full">
+                  <div className="flex flex-row justify-between">
+                      <h2 className="text-xl font-thin px-2">{decodedCategoryName}</h2>
+                      <SortOptions className="w-48 pr-4" />
+                  </div>
+                  <div className="tablet:hidden justify-start min-w-48 px-4 space-y-4">
+                      <Filter />
+                  </div>
+                  <div className="flex flex-wrap justify-stretch mt-8">
+                      {products.length > 0 ? (
+                          products.map((product, index) => (
+                              <CategoryProductCard key={index} product={product} />
+                          ))
+                      ) : (
+                          <div className="text-lg font-thin text-center w-full p-2">
+                              No products found for the category {decodedCategoryName}
+                          </div>
+                      )}
+                  </div>
+              </div>
+          </div>
+      );
+  };
+  
+  export default CategoryPage;
