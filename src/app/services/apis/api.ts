@@ -1,10 +1,10 @@
 // lib/api.ts
 
 import { SignUpFormInputs } from "@/app/users/signup/page";
-import { handleGet, handlePost } from "./handleApi";
+import { handleGet, handlePost, handlePut } from "./handleApi";
 import Cookies from 'js-cookie';
 import { SignInFormInputs } from "@/app/users/signin/page";
-import { CategoryType, CategoryTypeProduct, Product, ProductSearch } from "./models";
+import { Address, CategoryType, CategoryTypeProduct, Customer, Product, ProductSearch } from "./models";
 import { ProductBasicResponse } from "./ecomModels";
 
 const orgId = 970017453;
@@ -29,7 +29,6 @@ export const createCustomer = async (creadVaultUser: SignUpFormInputs) : Promise
   const url = `ecommerce/${orgId}/customer`;
   try {
     const response = await handlePost(url, creadVaultUser);
-    console.log("Res 1: ", response);
     return response;
   } catch (error) {
     console.log("Res 1 error: ");
@@ -41,6 +40,50 @@ export const createCustomer = async (creadVaultUser: SignUpFormInputs) : Promise
     }
   }
 };
+
+export const getCustomerByToken = async () : Promise<Customer | undefined> => {
+  const url = `ecommerce/${orgId}/customers/fromToken`;
+  try {
+    const response = await handleGet(url);
+    return response.data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const updateCustomer = async (customer: Customer) : Promise<Customer | undefined> => {
+  const url = `ecommerce/${orgId}/customers/${customer.customerId}`;
+  try {
+    const response = await handlePut(url, customer);
+    return response.data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const addAddress = async (customerId: string, address: Address) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/${customerId}/address`;
+  try {
+    const response = await handlePost(url, address);
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const updateAddress = async (customerId: string, address: Address) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/${customerId}/addresses/${address.id}`;
+  try {
+    const response = await handlePut(url, address);
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
 
 export const signin = async (creadVaultUser: SignInFormInputs) : Promise<any> => {
   const url = `ecommerce/${orgId}/customers/login`;
