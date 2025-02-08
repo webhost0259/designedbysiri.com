@@ -55,7 +55,7 @@ export default function ProfilePage() {
         ) : (
           <>
             <PersonalInfo customer={customer!} />
-            <AddressList customer={customer}/>
+            <AddressList customer={customer!}/>
           </>
         )}
       </div>
