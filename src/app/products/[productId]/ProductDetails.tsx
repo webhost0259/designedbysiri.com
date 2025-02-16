@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useState } from "react"
 import toast from 'react-hot-toast';
 import ImageCarousel from "./ImageCarousel"
+import { upsertCart } from "@/app/cart/cartUtils"
 
 interface ProductDetailsProps {
   product: Product
@@ -22,7 +23,21 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
     const cart = JSON.parse(localStorage.getItem(CARTKEY) || '[]');
 
     const existingProduct = cart.find((item: Product) => item.productId === product.productId);
-    
+
+    // Check if user is loggedIn or session is valid
+
+
+
+    // Prepare request payload
+    const payload = {
+      productId: product.productId,
+      quantity: existingProduct ? existingProduct.quantity + 1 : 1,
+      price: product.price,
+      discountApplied: 0.00
+    };
+
+    upsertCart(product.productId.toString(), payload.quantity, product.price, payload.discountApplied);
+
     if(existingProduct) {
       cart.forEach((item: Product) => {
         if (item.productId === product.productId) {

@@ -106,6 +106,73 @@ export const signout = async () : Promise<void> => {
   window.location.href = '/';
 };
 
+//----------------------Cart----------------------------------
+
+export const upsertCartItems = async (customerId: string, productId: string, quantity: any, price: any, discountApplied: any) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/${customerId}/cartItems`;
+  try {
+    const response = await handlePut(url, {
+      productId,
+      quantity,
+      price,
+      discountApplied
+    });
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+//----------------------Orders----------------------------------
+
+export const createOrder = async (customerId: string, orderRequest: any) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/${customerId}/orders`;
+  orderRequest.orgId = orgId;
+  orderRequest.customerId = customerId;
+  try {
+    const response = await handlePost(url, orderRequest);
+    console.log("createOrder", response);
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const getOrders = async (customerId: string) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/${customerId}/orders`;
+  try {
+    const response = await handleGet(url);
+    return response.data;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const updateOrderStatus = async (orderId: string, status: string) : Promise<any> => {
+  const url = `ecommerce/${orgId}/orders/${orderId}/status`;
+  try {
+    const response = await handlePut(url, { status });
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const updatePaymentStatus = async (orderId: string, paymentStatus: string) : Promise<any> => {
+  const url = `ecommerce/${orgId}/orders/${orderId}/paymentStatus`;
+  try {
+    const response = await handlePut(url, { paymentStatus });
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
 // ----------------------CategoryTypes----------------------------------
 
 export const getAllCategoryTypes = async () : Promise<Array<CategoryType>> => { 

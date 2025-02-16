@@ -95,3 +95,40 @@ export interface Customer{
     phone ?: number
     addresses?: Array<Address>,
 }
+
+export interface OrderItemRequest{
+    productId: string,
+    quantity: number,
+    price: number
+}
+
+export interface orderRequest{
+    customerId?: string,
+    orgId?: number,
+    shippingAddress?: string,
+    billingAddress?: string,
+    items?: Array<OrderItemRequest>
+}
+
+export interface OrderItem {
+    orderId: string;
+    productId: string;
+    quantity: number;
+    price: number;
+    totalAmount: number;
+}
+
+export interface Order {
+    orderId: string;
+    totalAmount: number;
+    orderStatus: 'pending' | 'processed' | 'shipped' | 'delivered' | 'cancelled';
+    paymentStatus: 'notPaid' | 'paid' | 'refunded';
+    createdAt: string; // ISO date string
+    items: OrderItem[];
+}
+
+export interface GetOrdersResponse {
+    status: number;
+    message?: string;
+    data?: Order[];
+}
