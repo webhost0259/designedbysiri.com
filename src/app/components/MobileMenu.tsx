@@ -116,17 +116,17 @@ export default function MobileMenu({userName, openMenu, toggleMenu, categoryType
               </a>
               <ul className="pl-8 space-y-2 mt-2">
                 <li>
-                  <a href="/stitching-connect" className="block text-lg text-gray-700 hover:text-gray-900">
+                  <a href="/users/profile" className="block text-lg text-gray-700 hover:text-gray-900">
                     Profile
                   </a>
                 </li>
                 <li>
-                  <a href="#about" className="block text-lg text-gray-700 hover:text-gray-900">
+                  <a href="/users/orders" className="block text-lg text-gray-700 hover:text-gray-900">
                     Orders
                   </a>
                 </li>
                 <li>
-                  <a href={"/delivery-return-policy"} className="block text-lg text-gray-700 hover:text-gray-900">
+                  <a href="/users/wishlist" className="block text-lg text-gray-700 hover:text-gray-900">
                     wishlist
                   </a>
                 </li>

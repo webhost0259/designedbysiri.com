@@ -24,12 +24,14 @@ export interface Order {
     orderStatus: string;
     paymentStatus: string;
     createdAt: string;
+    orderDate: string;  // ISO Date String
+    updatedAt: string;  // ISO Date String
     items: OrderItem[];
 }
 
 export default function OrdersPage() {
     const [loading, setLoading] = useState<boolean>(true);
-    const [orders, setOrders] = useState<Order[]>([]);
+    const [orders, setOrders] = useState<Order[]>([]); // Ensures orders is always an array
     const router = useRouter();
 
     useEffect(() => {
@@ -37,7 +39,7 @@ export default function OrdersPage() {
             try {
                 const response = await getOrdersData();
                 setLoading(false);
-                setOrders(response);
+                setOrders(response || []); // Ensure response is an array
             } catch (error) {
                 console.error("API Error:", error);
                 toast.error("Failed to load orders.");
@@ -54,7 +56,7 @@ export default function OrdersPage() {
             <h1 className="text-2xl font-semibold mb-4">Your Orders</h1>
 
             {orders.length === 0 ? (
-                <p className="text-gray-500">No orders found.</p>
+                <p className="text-gray-500 text-lg font-medium text-center">No Orders Available</p>
             ) : (
                 <div className="space-y-4">
                     {orders.map((order) => (
@@ -65,11 +67,14 @@ export default function OrdersPage() {
                                         <div>
                                             <p className="font-medium">Order ID: {order.orderId}</p>
                                             <p className="text-sm text-gray-600">
-                                                Total: <span className="font-semibold">${order.totalAmount}</span> | Status:{" "}
-                                                <span className="font-semibold">{order.orderStatus}</span>
+                                                <span className="font-semibold">Total:</span> ${order.totalAmount} | <span className="font-semibold">Status:</span> {order.orderStatus}
                                             </p>
                                             <p className="text-sm text-gray-600">
-                                                Payment: {order.paymentStatus.toUpperCase()}
+                                                <span className="font-semibold">Payment:</span> {order.paymentStatus.toUpperCase()}
+                                            </p>
+                                            <p className="text-sm text-gray-500">
+                                                <span className="font-semibold">Order Date:</span> {new Date(order.orderDate).toLocaleDateString()} | 
+                                                <span className="font-semibold"> Last Updated:</span> {new Date(order.updatedAt).toLocaleDateString()}
                                             </p>
                                         </div>
                                         <ChevronUpIcon className={`w-5 h-5 transition-transform ${open ? "rotate-180" : "rotate-0"}`} />
@@ -85,7 +90,11 @@ export default function OrdersPage() {
                                                     onClick={() => router.push(`/products/${item.productId}`)}
                                                 >
                                                     <div className="flex items-center space-x-4">
-                                                        <img src={item.productBaseImage} alt={item.productName} className="w-12 h-12 object-cover rounded-md" />
+                                                        <img 
+                                                            src={item.productBaseImage} 
+                                                            alt={item.productName} 
+                                                            className="w-12 h-12 object-cover rounded-md" 
+                                                        />
                                                         <div>
                                                             <p className="font-medium">{item.productName}</p>
                                                             <p className="text-sm text-gray-600">{item.quantity} x ${item.price}</p>
