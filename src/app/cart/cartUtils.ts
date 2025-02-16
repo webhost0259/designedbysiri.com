@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-import { createOrder, getCustomerByToken, upsertCartItems, validateToken } from "../services/apis/api";
+import { createOrder, getCustomerByToken, getOrders, upsertCartItems, validateToken } from "../services/apis/api";
 
 export const upsertCart = async (productId: string, 
                                 quantity: number, 
@@ -67,3 +67,36 @@ export const createOrderRequest = async (orderRequest: any): Promise<any> => {
         throw error;
     }
 };
+
+export const getOrdersData = async () => {
+    try {
+
+         // Check if there is a token in the cookies
+        const token = Cookies.get('token');
+        
+        // If there is no token, do not proceed
+        if (!token) {
+            return;
+        }
+
+        // Check if token is valid
+        const isValid = await validateToken();
+        if (!isValid) {
+            return;
+        }
+
+        const customerResponse = await getCustomerByToken();
+        console.log("Customer", customerResponse);
+
+        if (!customerResponse || !customerResponse.customerId) {
+            return;
+        }
+
+        const response = await getOrders(customerResponse.customerId);
+
+        return response;
+    } catch (error) {
+        console.error("API Error:", error);
+        throw error;
+    }
+}

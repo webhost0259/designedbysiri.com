@@ -6,6 +6,7 @@ import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { getOrders } from "@/app/services/apis/api";
+import { getOrdersData } from "@/app/cart/cartUtils";
 
 export interface OrderItem {
     orderId: string;
@@ -31,12 +32,10 @@ export default function OrdersPage() {
     const [orders, setOrders] = useState<Order[]>([]);
     const router = useRouter();
 
-    const customerId = "1287197703"; // Replace with dynamic user ID
-
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await getOrders(customerId);
+                const response = await getOrdersData();
                 setLoading(false);
                 setOrders(response);
             } catch (error) {
