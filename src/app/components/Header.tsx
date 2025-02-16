@@ -252,7 +252,7 @@ const Header = () => {
                     <MenuItem>
                       {({ active }) => (
                         <a
-                          href="#wishlist"
+                          href="/users/orders"
                           className={`${
                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
                           } block px-4 py-2 text-sm`}
@@ -264,7 +264,7 @@ const Header = () => {
                     <MenuItem>
                       {({ active }) => (
                         <a
-                          href="#wishlist"
+                          href="/users/wishlist"
                           className={`${
                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
                           } block px-4 py-2 text-sm`}

@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSWRConfig } from 'swr';
 import useSWR from 'swr';
-import { paymentUIpayload } from '../services/apis/models';
-import { initiatePayment } from '../services/apis/api';
+import { orderRequest, paymentUIpayload } from '../services/apis/models';
+import { createOrder, initiatePayment, updatePaymentStatus } from '../services/apis/api';
 import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
+import { createOrderRequest } from '../cart/cartUtils';
 
 const CARTKEY = 'siri-cart';
 
@@ -128,27 +129,53 @@ const CheckoutPage = () => {
       return;
     }
 
+    const createOrderReq: orderRequest = {
+      shippingAddress: address + ', ' + city + ', ' + state + ', ' + zip,
+      billingAddress: address + ', ' + city + ', ' + state + ', ' + zip,
+      items: cart?.map((item) => {
+        return {
+          productId: item.productId,
+          quantity: item.quantity,
+          price: item.price
+        }
+      })
+    }
+
+
     try {
       const newUuid = uuidv4();
       formData.amount = totalAmount;
       formData.merchantTransactionId = newUuid;
-      
-      initiatePayment(formData).then((res) => {
-        // Clear the cart from localStorage
-        localStorage.removeItem(CARTKEY);
-        // Update the cart state
-        mutateCart();
-        if(res.data.success){
-          window.location.href = res.data.redirectUrl;
-        }else {
-            setErrorMessage(res.data.message || "Payment initiation failed.");
-          }
-      }).catch((err) => {
-        console.log('Payment initiation failed : ', err);
-      })
-    } finally {
+  
+      const orderResponse = await createOrderRequest(createOrderReq);
+      console.log("Order creation response:", orderResponse);
+  
+      if (!orderResponse || !orderResponse.data) {
+          throw new Error("Order response is invalid");
+      }
+  
+      formData.merchantTransactionId = orderResponse.data.data.orderId;
+  
+      const paymentResponse = await initiatePayment(formData);
+      console.log("Payment initiation response:", paymentResponse);
+  
+      if (paymentResponse.data.success) {
+          updatePaymentStatus(orderResponse.data.data.orderId, 'paid');
+          // Clear the cart from localStorage
+          localStorage.removeItem(CARTKEY);
+          // Update the cart state
+          mutateCart();
+  
+          window.location.href = paymentResponse.data.redirectUrl;
+      } else {
+          updatePaymentStatus(orderResponse.data.data.orderId, 'notPaid');
+          setErrorMessage(paymentResponse.data.message || "Payment initiation failed.");
+      }
+  } catch (err) {
+      console.error("Error:", err);
+  } finally {
       // setIsSubmitting(false);
-    }
+  }
   };
 
   
