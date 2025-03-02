@@ -11,10 +11,10 @@ const SecondSection = ({products}:SecondSectionProps) => {
         className="bg-cover bg-center h-[276px] tablet:h-[400px] relative"
         style={{
           backgroundImage:
-            "url('https://images.pexels.com/photos/1778353/pexels-photo-1778353.jpeg')",
+            "url('/home-screen-images/secondary-2.png')",
         }}
       >
-        <div className="flex items-center justify-center h-full bg-opacity-50 bg-black">
+        <div className="flex items-center justify-center h-full bg-opacity-20 bg-black">
           <div className="text-center text-white">
             <h1 className="text-2xl laptop:text-4xl font-bold mb-4">
               Sireesha Reddy Designer Studio
