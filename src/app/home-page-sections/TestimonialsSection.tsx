@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
-// Sample testimonials data (the image will be the same for all)
+// Sample testimonials data
 const testimonials = [
   {
     name: "P Akshara",
@@ -49,13 +50,15 @@ const TestimonialsSection = () => {
       {/* Testimonial Card */}
       <div className="flex justify-center items-center">
         <div className="max-w-lg w-full min-h-[250px] p-6 bg-white rounded-lg shadow-lg text-center transition-transform duration-500 ease-in-out hover:scale-105">
-          <img
+          <Image
             src={funnyImage}
             alt="Funny testimonial"
+            width={80}
+            height={80}
             className="w-20 h-20 mx-auto rounded-full mb-4 animate-bounce"
           />
           <p className="text-lg text-gray-800 italic line-clamp-3">
-            "{testimonials[currentIndex].review}"
+            &ldquo;{testimonials[currentIndex].review}&rdquo;
           </p>
           <h4 className="text-lg font-bold mt-4 text-purple-700">
             {testimonials[currentIndex].name}
