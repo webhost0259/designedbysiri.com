@@ -6,6 +6,8 @@ import SecondSection from './home-page-sections/SecondSection';
 import ThirdSection from './home-page-sections/ThirdSection';
 import { ApplicationDescription, ApplicationTitle } from './SEO/util';
 import { getProductsForHomepage } from './services/apis/api';
+import VideoSection from './home-page-sections/VideoSection';
+import CategorySection from './home-page-sections/CategorySection';
 
 interface HomePageProps {
   productData: {
@@ -32,6 +34,11 @@ interface HomePageProps {
       {/* Page Content */}
       <main>
         <SecondSection products={productData}/>
+        <VideoSection 
+          video1='/home-screen-images/video-sec-1.mp4' 
+          video2='/home-screen-images/video-sec-3.mp4'
+        />
+        <CategorySection />
         <ThirdSection />
       </main>
     </div>

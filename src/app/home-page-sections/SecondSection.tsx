@@ -11,7 +11,7 @@ const SecondSection = ({products}:SecondSectionProps) => {
         className="bg-cover bg-center h-[276px] tablet:h-[400px] relative"
         style={{
           backgroundImage:
-            "url('/home-screen-images/secondary-2.png')",
+            "url('/home-screen-images/secondary.png')",
         }}
       >
         <div className="flex items-center justify-center h-full bg-opacity-20 bg-black">
