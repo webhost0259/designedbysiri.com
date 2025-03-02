@@ -8,6 +8,7 @@ import { ApplicationDescription, ApplicationTitle } from './SEO/util';
 import { getProductsForHomepage } from './services/apis/api';
 import VideoSection from './home-page-sections/VideoSection';
 import CategorySection from './home-page-sections/CategorySection';
+import TestimonialsSection from './home-page-sections/TestimonialsSection';
 
 interface HomePageProps {
   productData: {
@@ -39,6 +40,7 @@ interface HomePageProps {
           video2='/home-screen-images/video-sec-3.mp4'
         />
         <CategorySection />
+        <TestimonialsSection />
         <ThirdSection />
       </main>
     </div>
