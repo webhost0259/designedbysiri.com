@@ -13,6 +13,7 @@ const AddAddressModal = ({ isOpen, onClose, onSave }: AddAddressModalProps) => {
     line1: "",
     line2: "",
     city: "",
+    district:"",
     state: "",
     zip: "",
     country: "",

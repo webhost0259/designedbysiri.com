@@ -85,6 +85,18 @@ export const updateAddress = async (customerId: string, address: Address) : Prom
   }
 }
 
+export const markAddressAsDefault = async (customerId: string, addressId: string) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/${customerId}/addresses/${addressId}/mark-default`;
+  try {
+    const response = await handlePut(url, {});
+    return response;
+  }
+  catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
 export const signin = async (creadVaultUser: SignInFormInputs) : Promise<any> => {
   const url = `ecommerce/${orgId}/customers/login`;
   try {

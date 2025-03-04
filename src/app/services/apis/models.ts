@@ -22,9 +22,11 @@ export interface Address{
     line1 : string,
     line2 ?: string,
     city: string,
+    district: string,
     state: string,
     zip: string,
-    country: string
+    country: string,
+    isDefault: boolean
 }
 
 export interface CategoryType{

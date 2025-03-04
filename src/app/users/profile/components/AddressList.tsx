@@ -2,7 +2,7 @@ import { useState } from "react";
 import AddressCard from "./AddressCard";
 import AddAddressModal from "./AddAddressModal";
 import { Address, Customer } from "@/app/services/apis/models";
-import { addAddress, updateAddress } from "@/app/services/apis/api";
+import { addAddress, markAddressAsDefault, updateAddress } from "@/app/services/apis/api";
 
 
 interface AddressListProps {
@@ -32,6 +32,14 @@ const AddressList = ({customer} : AddressListProps) => {
     setAddresses((prev) => prev.map((addr) => (addr.id === id ? updatedAddress : addr)));
   };
 
+  const markAsDefault = (id: string) => {
+    markAddressAsDefault(customer.customerId, id).then((response) => {
+        // Reload the page
+        window.location.reload();
+      }
+    );
+  }
+
   return (
     <div className="mt-6 p-4 border rounded-lg bg-gray-50">
       <h2 className="text-lg font-medium text-gray-900 mb-2">Addresses</h2>
@@ -48,7 +56,12 @@ const AddressList = ({customer} : AddressListProps) => {
       ) : (
         <div className="space-y-4">
           {addresses.map((address) => (
-            <AddressCard key={address.id} address={address} updateAddress={updateCurrentAddress} />
+            <AddressCard 
+              key={address.id} 
+              address={address} 
+              updateAddress={updateCurrentAddress} 
+              markAsDefault={markAsDefault}
+              />
           ))}
         </div>
       )}
