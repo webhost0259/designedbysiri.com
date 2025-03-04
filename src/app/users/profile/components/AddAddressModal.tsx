@@ -17,6 +17,7 @@ const AddAddressModal = ({ isOpen, onClose, onSave }: AddAddressModalProps) => {
     state: "",
     zip: "",
     country: "",
+    isDefault: false
   };
 
   const [address, setAddress] = useState<Omit<Address, "id">>(initialAddress);
