@@ -18,7 +18,7 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
 
   const handleAddToWishlist = () => {
     setWishListLoading(true); // Set loading state
-    upsertWishList(product.productId.toString());ß
+    upsertWishList(product.productId.toString());
     setWishListLoading(false); // Reset loading state
   }
   // Function to handle adding the product to the cart
