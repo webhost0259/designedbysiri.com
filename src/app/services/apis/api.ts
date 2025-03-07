@@ -136,6 +136,30 @@ export const upsertCartItems = async (customerId: string, productId: string, qua
   }
 }
 
+//----------------------WishList----------------------------------
+
+export const addProductToWishlist = async (customerId: string, productId: string) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/${customerId}/wishlist`;
+  try {
+    const response = await handlePut(url, { productId });
+    return response;
+  } catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
+
+export const getWishlist = async (customerId: string) : Promise<any> => {
+  const url = `ecommerce/${orgId}/customers/${customerId}/wishlist`;
+  try {
+    const response = await handleGet(url);
+    return response.data;
+  }
+  catch (error) {
+    console.error('API Error:', error);
+    throw error;
+  }
+}
 //----------------------Orders----------------------------------
 
 export const createOrder = async (customerId: string, orderRequest: any) : Promise<any> => {
