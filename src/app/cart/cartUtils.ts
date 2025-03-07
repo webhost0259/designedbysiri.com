@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-import { createOrder, getCustomerByToken, getOrders, upsertCartItems, validateToken } from "../services/apis/api";
+import { addProductToWishlist, createOrder, getCustomerByToken, getOrders, getWishlist, upsertCartItems, validateToken } from "../services/apis/api";
 
 export const upsertCart = async (productId: string, 
                                 quantity: number, 
@@ -32,6 +32,61 @@ export const upsertCart = async (productId: string,
         }
     }); 
 }
+
+export const upsertWishList = async (productId: string) => {
+
+    // Check if there is a token in the cookies
+    const token = Cookies.get('token');
+    
+    // If there is no token, do not proceed
+    if (!token) {
+        return;
+    }
+
+    // Check if token is valid
+    const isValid = await validateToken();
+    if (!isValid) {
+        return;
+    }
+
+    getCustomerByToken().then((response) => {
+        console.log("Customer", response);
+        if (response) {
+            addProductToWishlist(response.customerId, productId);
+        }
+    });
+
+}
+
+export const getWishlistData = async () => {
+
+    // Check if there is a token in the cookies
+    const token = Cookies.get('token');
+    
+    // If there is no token, do not proceed
+    if (!token) {
+        return;
+    }
+
+    // Check if token is valid
+    const isValid = await validateToken();
+    if (!isValid) {
+        return;
+    }
+
+    const customerResponse = await getCustomerByToken();
+    console.log("Customer", customerResponse);
+
+    if (!customerResponse || !customerResponse.customerId) {
+        return;
+    }
+
+    const response = await getWishlist(customerResponse.customerId);
+
+    return response;
+
+}
+
 
 export const createOrderRequest = async (orderRequest: any): Promise<any> => {
     try {

@@ -6,7 +6,7 @@ import Image from "next/image"
 import { useState } from "react"
 import toast from 'react-hot-toast';
 import ImageCarousel from "./ImageCarousel"
-import { upsertCart } from "@/app/cart/cartUtils"
+import { upsertCart, upsertWishList } from "@/app/cart/cartUtils"
 
 interface ProductDetailsProps {
   product: Product
@@ -14,7 +14,13 @@ interface ProductDetailsProps {
 
 const ProductDetails = ({ product } : ProductDetailsProps) => {
   const [loading, setLoading] = useState(false);
+  const [wishListLoading, setWishListLoading] = useState(false);
 
+  const handleAddToWishlist = () => {
+    setWishListLoading(true); // Set loading state
+    upsertWishList(product.productId.toString());ß
+    setWishListLoading(false); // Reset loading state
+  }
   // Function to handle adding the product to the cart
   const handleAddToCart = () => {
     setLoading(true); // Set loading state
@@ -106,6 +112,7 @@ const ProductDetails = ({ product } : ProductDetailsProps) => {
               {loading ? 'Adding...' : 'Add to Bag'}
             </Button>
             <Button 
+              onClick={handleAddToWishlist}
               className="bg-gray-200 text-black font-semibold p-4 rounded-lg min-w-36 h-12 laptop:min-w-48 border-b-2 border-gray-500"
             >
               + Wishlist
