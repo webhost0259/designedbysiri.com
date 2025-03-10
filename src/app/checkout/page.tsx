@@ -90,13 +90,14 @@ const CheckoutPage = () => {
       const orderResponse = await createOrderRequest(orderPayload);
       const transactionId = orderResponse.data.data.orderId || uuidv4();
       console.log('Order created:', orderResponse.data.data);
-      await initiatePayment({
+      const paymentResponse = await initiatePayment({
         merchantTransactionId: transactionId,
         customerId: customer?.customerId || '',
         amount: cart.reduce((total, item) => total + item.price * item.quantity, 0) * 100,
         redirectUrl: `https://designedbysiri.com/users/payment-status?transactionId=${transactionId}`,
         mobileNumber: customer?.phone || 0,
       });
+      console.log('Payment initiated:', paymentResponse.data.data);
     } catch (error) {
       console.error('Error processing payment:', error);
       toast.error('Error processing your order.');
