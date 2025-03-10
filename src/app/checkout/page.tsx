@@ -89,16 +89,22 @@ const CheckoutPage = () => {
     try {
       const orderResponse = await createOrderRequest(orderPayload);
       const transactionId = orderResponse.data.data.orderId || uuidv4();
-      console.log('Order created:', orderResponse.data.data);
       const paymentResponse = await initiatePayment({
         merchantTransactionId: transactionId,
         customerId: customer?.customerId || '',
         amount: cart.reduce((total, item) => total + item.price * item.quantity, 0) * 100,
-        redirectUrl: `https://www.designedbysiri.com/users/orders`,
-        // redirectUrl: `https://designedbysiri.com/users/payment-status?transactionId=${transactionId}`,
+        redirectUrl: 'https://designedbysiri.com/users/orders',
         mobileNumber: customer?.phone || 0,
       });
-      console.log('Payment initiated:', paymentResponse.data.data);
+
+      if (paymentResponse.data.success) {
+        updatePaymentStatus(transactionId, 'paid');
+        localStorage.removeItem(CARTKEY);
+        window.location.href = paymentResponse.data.redirectUrl;
+      } else {
+        updatePaymentStatus(transactionId, 'notPaid');
+        toast.error('Payment failed!');
+      }
     } catch (error) {
       console.error('Error processing payment:', error);
       toast.error('Error processing your order.');
