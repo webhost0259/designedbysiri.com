@@ -1,7 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation"; // ✅ Correct import for App Router
-import axios from "axios";
 import toast from "react-hot-toast";
 import { updatePaymentStatus } from "@/app/services/apis/api";
 
