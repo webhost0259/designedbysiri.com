@@ -94,7 +94,7 @@ const CheckoutPage = () => {
         merchantTransactionId: transactionId,
         customerId: customer?.customerId || '',
         amount: cart.reduce((total, item) => total + item.price * item.quantity, 0) * 100,
-        redirectUrl: `https://designedbysiri.com/users/payment-status`,
+        redirectUrl: `https://www.designedbysiri.com/users/orders`,
         // redirectUrl: `https://designedbysiri.com/users/payment-status?transactionId=${transactionId}`,
         mobileNumber: customer?.phone || 0,
       });
