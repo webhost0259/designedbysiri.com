@@ -1,25 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+
+import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import toast from "react-hot-toast";
 import { updatePaymentStatus } from "@/app/services/apis/api";
 
-const PaymentStatus = () => {
+const PaymentStatusPage = () => {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const [transactionId, setTransactionId] = useState<string | null>(null);
+  const transactionId = searchParams.get("transactionId");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("transactionId");
-      console.log("Extracted transactionId:", id);
-      setTransactionId(id);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (transactionId === null) return; // Wait until transactionId is set
-
     if (!transactionId) {
       toast.error("Invalid request. Redirecting to orders page...");
       router.push("/users/orders");
@@ -30,7 +22,7 @@ const PaymentStatus = () => {
       try {
         await updatePaymentStatus(transactionId, "paid");
 
-        // Simulate API call (Uncomment when needed)
+        // Simulated API call (Uncomment when needed)
         // const response = await axios.get(`/api/payment/status?transactionId=${transactionId}`);
         // const status = response.data.status;
 
@@ -44,7 +36,7 @@ const PaymentStatus = () => {
       } catch (error) {
         console.error("Error verifying payment:", error);
         toast.error("Something went wrong! Redirecting to cart...");
-        router.push("/cart");
+        router.push("/users/cart");
       }
     };
 
@@ -54,4 +46,10 @@ const PaymentStatus = () => {
   return <p>Verifying payment...</p>;
 };
 
-export default PaymentStatus;
+const PaymentStatusWrapper = () => (
+  <Suspense fallback={<p>Loading payment details...</p>}>
+    <PaymentStatusPage />
+  </Suspense>
+);
+
+export default PaymentStatusWrapper;
