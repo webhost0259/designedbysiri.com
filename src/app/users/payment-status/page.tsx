@@ -21,18 +21,8 @@ const PaymentStatusPage = () => {
     const checkPaymentStatus = async () => {
       try {
         await updatePaymentStatus(transactionId, "paid");
-
-        // Simulated API call (Uncomment when needed)
-        // const response = await axios.get(`/api/payment/status?transactionId=${transactionId}`);
-        // const status = response.data.status;
-
-        // if (status === "PAID") {
-        //   toast.success("Payment successful!");
-        // } else {
-        //   updatePaymentStatus(transactionId, "notPaid");
-        //   toast.error("Payment failed. Redirecting to cart...");
-        //   router.push("/users/cart");
-        // }
+        toast.success("Payment successful!");
+        router.push("/users/orders");
       } catch (error) {
         console.error("Error verifying payment:", error);
         toast.error("Something went wrong! Redirecting to cart...");
@@ -43,11 +33,21 @@ const PaymentStatusPage = () => {
     checkPaymentStatus();
   }, [transactionId, router]);
 
-  return <p>Verifying payment...</p>;
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <p className="text-lg font-medium">Verifying payment...</p>
+    </div>
+  );
 };
 
 const PaymentStatusWrapper = () => (
-  <Suspense fallback={<p>Loading payment details...</p>}>
+  <Suspense
+    fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg font-medium">Loading payment details...</p>
+      </div>
+    }
+  >
     <PaymentStatusPage />
   </Suspense>
 );

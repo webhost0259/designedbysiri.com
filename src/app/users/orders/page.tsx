@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Disclosure } from "@headlessui/react";
-import { ChevronUpIcon } from "@heroicons/react/20/solid";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { getOrders } from "@/app/services/apis/api";
 import { getOrdersData } from "@/app/cart/cartUtils";
+import toast from "react-hot-toast";
+import { CalendarIcon, CreditCardIcon, CheckCircleIcon, XCircleIcon, ClockIcon } from "@heroicons/react/24/outline";
 
 export interface OrderItem {
     orderId: string;
@@ -24,14 +22,14 @@ export interface Order {
     orderStatus: string;
     paymentStatus: string;
     createdAt: string;
-    orderDate: string;  // ISO Date String
-    updatedAt: string;  // ISO Date String
+    orderDate: string; // ISO Date String
+    updatedAt: string; // ISO Date String
     items: OrderItem[];
 }
 
 export default function OrdersPage() {
     const [loading, setLoading] = useState<boolean>(true);
-    const [orders, setOrders] = useState<Order[]>([]); // Ensures orders is always an array
+    const [orders, setOrders] = useState<Order[]>([]);
     const router = useRouter();
 
     useEffect(() => {
@@ -39,7 +37,7 @@ export default function OrdersPage() {
             try {
                 const response = await getOrdersData();
                 setLoading(false);
-                setOrders(response || []); // Ensure response is an array
+                setOrders(response || []);
             } catch (error) {
                 console.error("API Error:", error);
                 toast.error("Failed to load orders.");
@@ -51,63 +49,83 @@ export default function OrdersPage() {
 
     if (loading) return <p className="text-center text-gray-500">Loading orders...</p>;
 
-    return (
-        <div className="max-w-4xl mx-auto py-8 px-4">
-            <h1 className="text-2xl font-semibold mb-4">Your Orders</h1>
+    // Group orders by date
+    const ordersByDate = orders.reduce((acc: { [key: string]: Order[] }, order) => {
+        const date = new Date(order.orderDate).toLocaleDateString();
+        if (!acc[date]) acc[date] = [];
+        acc[date].push(order);
+        return acc;
+    }, {});
 
-            {orders.length === 0 ? (
+    return (
+        <div className="max-w-4xl mx-auto py-8 px-4 min-h-screen">
+            <h1 className="text-2xl font-semibold mb-6 text-center">Your Orders</h1>
+
+            {Object.keys(ordersByDate).length === 0 ? (
                 <p className="text-gray-500 text-lg font-medium text-center">No Orders Available</p>
             ) : (
-                <div className="space-y-4">
-                    {orders.map((order) => (
-                        <Disclosure key={order.orderId}>
-                            {({ open }) => (
-                                <div className="border border-gray-300 rounded-lg p-4">
-                                    <Disclosure.Button className="flex justify-between w-full text-left">
-                                        <div>
-                                            <p className="font-medium">Order ID: {order.orderId}</p>
-                                            <p className="text-sm text-gray-600">
-                                                <span className="font-semibold">Total:</span> ${order.totalAmount} | <span className="font-semibold">Status:</span> {order.orderStatus}
-                                            </p>
-                                            <p className="text-sm text-gray-600">
-                                                <span className="font-semibold">Payment:</span> {order.paymentStatus.toUpperCase()}
-                                            </p>
-                                            <p className="text-sm text-gray-500">
-                                                <span className="font-semibold">Order Date:</span> {new Date(order.orderDate).toLocaleDateString()} | 
-                                                <span className="font-semibold"> Last Updated:</span> {new Date(order.updatedAt).toLocaleDateString()}
-                                            </p>
-                                        </div>
-                                        <ChevronUpIcon className={`w-5 h-5 transition-transform ${open ? "rotate-180" : "rotate-0"}`} />
-                                    </Disclosure.Button>
+                <div className="space-y-8">
+                    {Object.entries(ordersByDate).map(([date, orders]) => (
+                        <div key={date}>
+                            {/* Date Separator */}
+                            <div className="flex items-center mb-4">
+                                <div className="flex-1 border-t border-gray-300"></div>
+                                <p className="px-4 text-gray-600 font-semibold text-lg flex items-center">
+                                    <CalendarIcon className="w-5 h-5 mr-2 text-gray-500" />
+                                    {date}
+                                </p>
+                                <div className="flex-1 border-t border-gray-300"></div>
+                            </div>
 
-                                    <Disclosure.Panel className="mt-3 text-sm text-gray-700">
-                                        <p className="text-gray-500 mb-2">Order Items:</p>
-                                        <ul className="border border-gray-200 rounded-lg p-2">
-                                            {order.items.map((item) => (
-                                                <li
-                                                    key={item.productId}
-                                                    className="flex items-center justify-between py-2 border-b last:border-0 cursor-pointer hover:bg-gray-100 p-2 rounded-md transition"
-                                                    onClick={() => router.push(`/products/${item.productId}`)}
-                                                >
-                                                    <div className="flex items-center space-x-4">
-                                                        <img 
-                                                            src={item.productBaseImage} 
-                                                            alt={item.productName} 
-                                                            className="w-12 h-12 object-cover rounded-md" 
-                                                        />
-                                                        <div>
-                                                            <p className="font-medium">{item.productName}</p>
-                                                            <p className="text-sm text-gray-600">{item.quantity} x ${item.price}</p>
-                                                        </div>
-                                                    </div>
-                                                    <span className="text-gray-700 font-semibold">${item.totalAmount}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </Disclosure.Panel>
+                            {orders.map((order) => (
+                                <div key={order.orderId} className="border border-gray-300 rounded-lg p-4 space-y-4 mb-6"> {/* ADDED mb-6 FOR SPACING */}
+                                    {order.items.map((item) => (
+                                        <div
+                                            key={item.productId}
+                                            className="flex items-center justify-between border-b last:border-0 py-3 hover:bg-gray-100 p-2 rounded-md transition cursor-pointer"
+                                            onClick={() => router.push(`/products/${item.productId}`)}
+                                        >
+                                            {/* Product Image */}
+                                            <img 
+                                                src={item.productBaseImage} 
+                                                alt={item.productName} 
+                                                className="w-16 h-16 object-cover rounded-md" 
+                                            />
+
+                                            {/* Product Details */}
+                                            <div className="flex-1 ml-4">
+                                                <p className="font-medium text-lg">{item.productName}</p>
+                                                <p className="text-sm text-gray-600">
+                                                    <span className="font-semibold">Order ID:</span> {item.orderId}
+                                                </p>
+                                                <p className="text-sm text-gray-600">
+                                                    <span className="font-semibold">Quantity:</span> {item.quantity}
+                                                </p>
+                                                <p className="text-sm text-gray-600">
+                                                    <span className="font-semibold">Price:</span> ${item.price}
+                                                </p>
+                                            </div>
+
+                                            {/* Status Details */}
+                                            <div className="text-sm text-gray-700 flex flex-col items-end">
+                                                <span className="font-medium flex items-center">
+                                                    <span className="text-gray-500">Order Status:</span> 
+                                                    <span className={`ml-1 flex items-center ${order.orderStatus === "Delivered" ? "text-green-600" : order.orderStatus === "Pending" ? "text-yellow-600" : "text-blue-600"}`}>
+                                                        {order.orderStatus} {order.orderStatus === "Delivered" ? <CheckCircleIcon className="w-4 h-4 ml-1" /> : order.orderStatus === "Pending" ? <ClockIcon className="w-4 h-4 ml-1" /> : null}
+                                                    </span>
+                                                </span>
+                                                <span className="font-medium flex items-center">
+                                                    <span className="text-gray-500">Payment Status:</span> 
+                                                    <span className={`ml-1 flex items-center ${order.paymentStatus === "paid" ? "text-green-600" : "text-red-600"}`}>
+                                                        {order.paymentStatus.toUpperCase()} {order.paymentStatus === "paid" ? <CreditCardIcon className="w-4 h-4 ml-1" /> : <XCircleIcon className="w-4 h-4 ml-1 text-red-600" />}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            )}
-                        </Disclosure>
+                            ))}
+                        </div>
                     ))}
                 </div>
             )}
