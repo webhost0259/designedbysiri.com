@@ -199,7 +199,7 @@ export const updateOrderStatus = async (orderId: string, status: string) : Promi
 }
 
 export const updatePaymentStatus = async (orderId: string, paymentStatus: string) : Promise<any> => {
-  const url = `ecommerce/${orgId}/orders/${orderId}/paymentStatus`;
+  const url = `ecommerce/${orgId}/orders/${orderId}/payment-status`;
   try {
     const response = await handlePut(url, { paymentStatus });
     return response;
