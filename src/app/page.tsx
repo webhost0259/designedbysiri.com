@@ -34,7 +34,7 @@ interface HomePageProps {
 
       {/* Page Content */}
       <main>
-        <SecondSection products={productData}/>
+        {/* <SecondSection products={productData}/> */}
         <VideoSection 
           video1='/home-screen-images/video-sec-1.mp4' 
           video2='/home-screen-images/video-sec-3.mp4'
