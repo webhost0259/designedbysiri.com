@@ -21,7 +21,7 @@ interface VideoSectionProps {
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
           <div className="text-center text-white w-full max-w-screen-lg">
             <h1 className="text-xl tablet:text-3xl laptop:text-4xl font-bold mb-4">
-              Designed by Siri
+              Sireesha Reddy Designer Studio
             </h1>
             <p className="text-sm tablet:text-base laptop:text-lg mb-6">
               Exclusive fashion collections, now in motion.
